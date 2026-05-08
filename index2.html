@@ -3,669 +3,419 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      [TÊN SPA] - Trị Mụn • Da Nhạy Cảm • Lấy Lại Da Đẹp Chỉ Sau 28 Ngày
-    </title>
-    <meta
-      name="description"
-      content="So da miễn phí + Voucher 100k. Hơn 5.200 chị em đã trị mụn thành công tại [TÊN SPA]"
+    <title>Loading...</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="./data.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <style>
-      :root {
-        /* ==================== KHU VỰC CHỈNH NHANH - CHỈ SỬA TẠI ĐÂY ==================== */
-        --primary-color: #10b981; /* Xanh lá chủ đạo */
-        --primary-dark: #059669;
-        --accent-color: #f97316; /* Màu nhấn CTA (cam ấm) */
-        --secondary-color: #eab308;
-        --bg-color: #f8fafc;
-        --card-bg: #ffffff;
-        --text-color: #1e2937;
-        --text-light: #64748b;
-        --border-color: #e2e8f0;
-        --success-color: #10b981;
-        --warning-color: #f97316;
-
-        --border-radius: 16px;
-        --box-shadow: 0 10px 15px -3px rgb(16 185 129 / 0.1);
-        --section-spacing: 80px;
-        --container-max: 1280px;
-
-        --font-base:
-          system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-        --font-heading:
-          system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-
-        --transition: all 0.3s ease;
-        /* ========================================================================= */
-      }
-
-      /* Preset khác (copy-paste vào :root để đổi nhanh) */
-      /* Preset 2 - Hồng pastel: --primary-color: #ec4899; --accent-color: #a855f7; */
-      /* Preset 3 - Tím lavender: --primary-color: #8b5cf6; --accent-color: #c084fc; */
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: var(--font-base);
-        background: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.6;
-      }
-      .container {
-        max-width: var(--container-max);
-        margin: 0 auto;
-        padding: 0 1rem;
-      }
-
-      header {
-        background: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-      }
-      .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-      }
-      .logo {
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: var(--primary-color);
-      }
-      .nav-links {
-        display: none;
-        gap: 2rem;
-      }
-      .nav-links a {
-        text-decoration: none;
-        color: var(--text-color);
-        font-weight: 500;
-      }
-
-      .hero {
-        background: linear-gradient(135deg, var(--primary-color), #059669);
-        color: white;
-        padding: 4rem 0 3rem;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero-content {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        align-items: center;
-        text-align: center;
-      }
-      @media (min-width: 768px) {
-        .hero-content {
-          flex-direction: row;
-          text-align: left;
-        }
-        .hero-text {
-          flex: 1;
-        }
-        .hero-image {
-          flex: 1;
-        }
-      }
-
-      h1 {
-        font-size: 2.25rem;
-        line-height: 1.2;
-        margin-bottom: 1rem;
-      }
-      .cta-btn {
-        background: var(--accent-color);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: var(--border-radius);
-        font-weight: 700;
-        font-size: 1.1rem;
-        border: none;
-        cursor: pointer;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-      }
-      .cta-btn:hover {
-        transform: translateY(-3px);
-        background: #ea580c;
-      }
-
-      section {
-        padding: var(--section-spacing) 0;
-      }
-      .section-title {
-        text-align: center;
-        font-size: 1.75rem;
-        color: var(--primary-dark);
-        margin-bottom: 3rem;
-      }
-
-      .pain-grid,
-      .benefit-grid,
-      .review-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.5rem;
-      }
-      .card {
-        background: var(--card-bg);
-        border-radius: var(--border-radius);
-        padding: 1.5rem;
-        box-shadow: var(--box-shadow);
-        text-align: center;
-      }
-
-      .form-container {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        background: white;
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-      }
-      @media (min-width: 1024px) {
-        .form-container {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      input,
-      select,
-      button {
-        width: 100%;
-        padding: 14px;
-        border: 2px solid var(--border-color);
-        border-radius: 12px;
-        margin-bottom: 1rem;
-        font-size: 1rem;
-      }
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap");
+      body { font-family: "Inter", system-ui, sans-serif; }
+      .heading-font { font-family: "Playfair Display", serif; }
       .sticky-cta {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: white;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        padding: 0.75rem;
-        display: flex;
-        gap: 0.5rem;
-        z-index: 999;
+        position: fixed; bottom: 20px; left: 50%;
+        transform: translateX(-50%); z-index: 50;
       }
-      .sticky-cta button {
-        flex: 1;
+      .accordion-content {
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.3s ease;
       }
-
-      .accordion-item {
-        border-bottom: 1px solid var(--border-color);
-      }
-      .faq-question {
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem 0;
-        cursor: pointer;
-        font-weight: 600;
-      }
-
-      /* Responsive */
-      @media (min-width: 640px) {
-        h1 {
-          font-size: 2.75rem;
-        }
-      }
-      @media (min-width: 1024px) {
-        .nav-links {
-          display: flex;
-        }
-        .hamburger {
-          display: none;
-        }
-      }
+      .fade-in { animation: fadeIn 0.6s ease both; }
+      @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
     </style>
   </head>
-  <body>
-    <!-- ==================== CONFIG & COMMENT - CHỈNH NHANH Ở ĐÂY ==================== -->
-    <!-- 
-    1. Thay toàn bộ [TÊN SPA] → tên thật
-    2. Thay [HOTLINE] → số điện thoại
-    3. Thay link Zalo / Messenger ở phần JS & button
-    4. Đổi màu: chỉ sửa :root ở trên (hoặc copy preset)
-    5. Thay ảnh: src="https://picsum.photos/id/XX/800/600" → ảnh thật
-    6. Muốn tắt section: comment toàn bộ <section>...</section>
--->
 
-    <header>
-      <div class="container nav">
-        <div class="logo">[TÊN SPA]</div>
-        <div class="nav-links">
-          <a href="#pain">Vấn đề</a>
-          <a href="#benefit">Lợi ích</a>
-          <a href="#process">Quy trình</a>
-          <a href="#offer">Ưu đãi</a>
-          <a href="#form">Tư vấn miễn phí</a>
+  <body class="bg-white text-zinc-900" x-data="CLIENT">
+
+    <!-- ══ HEADER ══════════════════════════════════════════════════════════ -->
+    <header class="bg-zinc-900 text-white sticky top-0 z-40 border-b border-zinc-700">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center font-bold">🌿</div>
+          <span class="text-xl font-black tracking-tight" x-text="brand"></span>
         </div>
-        <div style="display: flex; gap: 10px; align-items: center">
-          <a
-            href="tel:[HOTLINE]"
-            style="color: var(--primary-color); font-weight: 700"
-            >☎ [HOTLINE]</a
-          >
-          <button
-            onclick="window.open('https://zalo.me/[ZALO_ID]', '_blank')"
-            style="
-              background: var(--primary-color);
-              color: white;
-              padding: 8px 16px;
-              border-radius: 9999px;
-              border: none;
-            "
-          >
-            💬 Zalo
-          </button>
-          <button
-            class="hamburger"
-            style="background: none; border: none; font-size: 1.5rem"
-          >
-            ☰
-          </button>
+        <nav class="hidden md:flex gap-6 text-sm font-medium text-zinc-300">
+          <template x-for="link in nav.links" :key="link.href">
+            <a :href="link.href" class="hover:text-emerald-400 transition" x-text="link.label"></a>
+          </template>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a x-bind:href="zalo" target="_blank" class="text-zinc-400 hover:text-emerald-400">
+            <i class="fab fa-whatsapp text-lg"></i>
+          </a>
+          <a x-bind:href="messenger" target="_blank" class="text-zinc-400 hover:text-emerald-400">
+            <i class="fab fa-facebook-messenger text-lg"></i>
+          </a>
+          <button onclick="scrollToForm()"
+            class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-bold transition"
+            x-text="nav.cta"></button>
         </div>
       </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero" id="hero">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <h1>Đang mệt mỏi vì mụn dai dẳng &amp; da nhạy cảm?</h1>
-            <p style="font-size: 1.25rem; margin: 1rem 0">
-              [TÊN SPA] giúp hơn <strong>5.200 chị em</strong> lấy lại làn da
-              sạch mụn, mịn màng chỉ sau 28 ngày
-            </p>
-            <button
-              class="cta-btn"
-              onclick="
-                document
-                  .getElementById('form')
-                  .scrollIntoView({ behavior: 'smooth' })
-              "
-            >
-              🔥 Đăng ký soi da MIỄN PHÍ + Voucher 100k
-            </button>
-            <div
-              style="
-                margin-top: 1.5rem;
-                display: flex;
-                gap: 1rem;
-                justify-content: center;
-                flex-wrap: wrap;
-              "
-            >
-              <span>✅ Cam kết hiệu quả hoặc hoàn tiền</span>
-              <span>✅ Được Bộ Y tế công nhận</span>
+    <!-- ══ HERO ════════════════════════════════════════════════════════════ -->
+    <section class="bg-zinc-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left -->
+        <div class="space-y-8">
+          <div class="inline-flex items-center gap-2 border border-emerald-500 text-emerald-400 px-4 py-1.5 rounded-full text-sm font-medium">
+            <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+            <span x-text="hero.badge"></span>
+          </div>
+          <h1 class="heading-font text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1]">
+            <span class="text-zinc-300 text-3xl md:text-4xl block mb-2" x-text="hero.headline1"></span>
+            <span class="text-emerald-400" x-text="hero.headline2"></span>
+          </h1>
+          <p class="text-zinc-400 text-lg leading-relaxed">
+            <span x-text="hero.subtext"></span><br />
+            <span class="text-white font-semibold" x-text="hero.subCta"></span>
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button onclick="scrollToForm()"
+              class="bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-4 rounded-xl font-bold text-lg transition"
+              x-text="hero.ctaBtn"></button>
+            <a x-bind:href="'tel:' + phone"
+              class="border border-zinc-600 hover:border-emerald-500 px-6 py-4 rounded-xl font-medium text-zinc-300 flex items-center gap-2 transition"
+              x-text="'📞 ' + hotline"></a>
+          </div>
+          <div class="flex items-center gap-4 text-sm text-zinc-400">
+            <template x-for="item in hero.trustItems" :key="item.icon">
+              <span class="flex items-center gap-1.5">
+                <i :class="'fas ' + item.icon + ' text-emerald-500'"></i>
+                <span x-text="item.text"></span>
+              </span>
+            </template>
+          </div>
+        </div>
+        <!-- Right: stacked images -->
+        <div class="relative hidden md:block">
+          <img src="https://picsum.photos/id/201/560/640"
+            class="rounded-2xl w-full object-cover shadow-2xl" />
+          <div class="absolute -bottom-5 -left-5 bg-zinc-800 border border-zinc-700 p-4 rounded-2xl shadow-xl flex items-center gap-4">
+            <img src="https://picsum.photos/id/64/48/48" class="rounded-full ring-2 ring-emerald-500 w-12 h-12" />
+            <div>
+              <p class="font-bold text-white" x-text="hero.testimonialName"></p>
+              <p class="text-xs text-emerald-400" x-text="hero.testimonialResult"></p>
             </div>
           </div>
-          <div class="hero-image">
-            <img
-              src="https://picsum.photos/id/201/600/500"
-              alt="Da đẹp sau trị mụn"
-              style="
-                width: 100%;
-                border-radius: 20px;
-                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
-              "
-              loading="lazy"
-            />
-            <div
-              style="
-                text-align: center;
-                margin-top: 10px;
-                font-size: 0.9rem;
-                color: #fff;
-              "
-            >
-              Chị Lan 26t - Trước &amp; Sau 28 ngày
+          <div class="absolute top-4 right-4 bg-emerald-500 text-white text-sm font-bold px-4 py-2 rounded-xl">
+            ⭐ <span x-text="hero.rating"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ STAT STRIP ══════════════════════════════════════════════════════ -->
+    <section class="bg-emerald-600 text-white">
+      <div class="max-w-5xl mx-auto px-4 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <p class="text-3xl font-black" x-text="reviews + '+'"></p>
+          <p class="text-emerald-200 text-sm mt-1">đánh giá 5 sao</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black">28</p>
+          <p class="text-emerald-200 text-sm mt-1">ngày thoát mụn</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black">8.700+</p>
+          <p class="text-emerald-200 text-sm mt-1">khách đã thành công</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black">6</p>
+          <p class="text-emerald-200 text-sm mt-1">tháng bảo hành</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PAIN ════════════════════════════════════════════════════════════ -->
+    <section id="pain" class="py-20 bg-zinc-50">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <span class="text-emerald-600 font-semibold text-sm uppercase tracking-widest" x-text="pain.label"></span>
+          <h2 class="text-3xl md:text-4xl font-black mt-2" x-text="pain.heading"></h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <template x-for="(item, i) in pain.items" :key="item.text">
+            <div class="flex items-start gap-5 bg-white p-6 rounded-2xl border border-zinc-100 hover:border-emerald-200 hover:shadow-md transition">
+              <span class="text-4xl font-black text-zinc-100 leading-none select-none" x-text="(i+1).toString().padStart(2,'0')"></span>
+              <div class="pt-1">
+                <span class="text-2xl" x-text="item.emoji"></span>
+                <p class="font-semibold mt-1 text-zinc-800" x-text="item.text"></p>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SOLUTION (zigzag) ═══════════════════════════════════════════════ -->
+    <section id="solution" class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-14">
+          <h2 class="text-3xl md:text-4xl font-black" x-text="brand + ' ' + solution.headingSuffix"></h2>
+          <p class="text-zinc-500 mt-3" x-text="solution.subtitle"></p>
+        </div>
+        <div class="space-y-10">
+          <template x-for="(card, i) in solution.cards" :key="card.title">
+            <div class="grid md:grid-cols-2 gap-8 items-center"
+              :class="i % 2 === 1 ? 'md:[&>:first-child]:order-2' : ''">
+              <div class="relative">
+                <img :src="'https://picsum.photos/id/' + card.imgId + '/560/380'"
+                  class="rounded-2xl w-full object-cover shadow-lg" />
+                <div x-show="card.badge"
+                  class="absolute top-4 left-4 bg-rose-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg"
+                  x-text="card.badge"></div>
+              </div>
+              <div class="space-y-4 px-2">
+                <span class="text-emerald-600 text-sm font-semibold uppercase tracking-wider"
+                  x-text="'Giải pháp 0' + (i+1)"></span>
+                <h3 class="text-2xl md:text-3xl font-black" x-text="card.title"></h3>
+                <p x-show="card.desc" class="text-zinc-500 text-lg" x-text="card.desc"></p>
+                <p x-show="card.price"
+                  class="text-emerald-600 font-bold text-xl" x-text="card.price"></p>
+                <button onclick="scrollToForm()"
+                  class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition">
+                  Tư vấn ngay →
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BENEFITS (checklist) ════════════════════════════════════════════ -->
+    <section class="py-20 bg-emerald-50">
+      <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-12" x-text="benefits.heading"></h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <template x-for="item in benefits.items" :key="item.title">
+            <div class="flex items-start gap-4 bg-white p-5 rounded-2xl shadow-sm">
+              <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0 text-xl"
+                x-text="item.emoji"></div>
+              <div>
+                <p class="font-bold text-zinc-800" x-text="item.title"></p>
+                <p x-show="item.sub" class="text-sm text-zinc-500 mt-0.5" x-text="item.sub"></p>
+              </div>
+              <i class="fas fa-check-circle text-emerald-500 ml-auto flex-shrink-0 mt-0.5"></i>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ REVIEWS ════════════════════════════════════════════════════════ -->
+    <section id="review" class="py-20 bg-zinc-900 text-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-12" x-text="reviewsSection.heading"></h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Review 1 -->
+          <div class="bg-zinc-800 rounded-2xl p-6 flex flex-col gap-4">
+            <div class="flex gap-1 text-amber-400">⭐⭐⭐⭐⭐</div>
+            <p class="text-zinc-300 text-sm leading-relaxed flex-1"
+              x-text="'\"' + reviewsSection.items[0].quote + '\"'"></p>
+            <div class="flex items-center gap-3 pt-2 border-t border-zinc-700">
+              <img :src="'https://picsum.photos/id/' + reviewsSection.items[0].imgId + '/40/40'"
+                class="w-10 h-10 rounded-full ring-2 ring-emerald-500" />
+              <p class="text-sm font-semibold" x-text="reviewsSection.items[0].author"></p>
+            </div>
+          </div>
+          <!-- Before/After -->
+          <div class="bg-zinc-800 rounded-2xl p-6">
+            <p class="font-bold text-emerald-400 mb-4" x-text="reviewsSection.beforeAfterLabel"></p>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <img src="https://picsum.photos/id/180/200/180" class="rounded-xl w-full object-cover" />
+                <p class="text-xs text-zinc-500 mt-1 text-center" x-text="reviewsSection.beforeAfterDay1"></p>
+              </div>
+              <div>
+                <img src="https://picsum.photos/id/201/200/180" class="rounded-xl w-full object-cover" />
+                <p class="text-xs text-emerald-400 mt-1 text-center font-bold" x-text="reviewsSection.beforeAfterDay28"></p>
+              </div>
+            </div>
+            <button :onclick="'alert(CLIENT.reviewsSection.beforeAfterMsg)'"
+              class="w-full mt-4 bg-emerald-600 hover:bg-emerald-500 text-white py-3 rounded-xl font-semibold text-sm transition"
+              x-text="reviewsSection.beforeAfterBtn"></button>
+          </div>
+          <!-- Review 2 -->
+          <div class="bg-zinc-800 rounded-2xl p-6 flex flex-col gap-4">
+            <div class="flex gap-1 text-amber-400">⭐⭐⭐⭐⭐</div>
+            <p class="text-zinc-300 text-sm leading-relaxed flex-1"
+              x-text="'\"' + reviewsSection.items[1].quote + '\"'"></p>
+            <div class="pt-2 border-t border-zinc-700">
+              <p class="text-sm font-semibold" x-text="reviewsSection.items[1].author"></p>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Trust badges -->
-      <div style="text-align: center; margin-top: 2rem; font-size: 0.9rem">
-        ⭐⭐⭐⭐⭐ 4.98 (1.284 đánh giá) • 5.200+ khách hàng đã trị thành công
+        <p class="text-center mt-8 text-emerald-400 font-medium"
+          x-text="reviewsSection.morePrefix + reviews + reviewsSection.moreSuffix"></p>
       </div>
     </section>
 
-    <!-- PAIN POINTS -->
-    <section id="pain" style="background: #f1f5f9">
-      <div class="container">
-        <h2 class="section-title">Bạn đang gặp những vấn đề này?</h2>
-        <div class="pain-grid">
-          <div class="card">😣 Mụn viêm, mụn ẩn tái phát liên tục</div>
-          <div class="card">🔥 Da đỏ rát, kích ứng mọi mỹ phẩm</div>
-          <div class="card">💰 Tốn hàng chục triệu nhưng không hết mụn</div>
-          <div class="card">
-            😔 Mất tự tin, ngại ra ngoài, ảnh hưởng công việc
+    <!-- ══ PROCESS (timeline) ═════════════════════════════════════════════ -->
+    <section id="process" class="py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-black text-center mb-12" x-text="process.heading"></h2>
+        <div class="relative">
+          <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-emerald-100"></div>
+          <div class="space-y-8">
+            <template x-for="(step, i) in process.steps" :key="step">
+              <div class="flex items-start gap-6 relative">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0 z-10"
+                  :class="i === process.steps.length - 1 ? 'bg-emerald-600 text-white' : 'bg-emerald-100 text-emerald-700'"
+                  x-text="i + 1"></div>
+                <div class="bg-zinc-50 rounded-2xl p-5 flex-1 border border-zinc-100">
+                  <p class="font-bold text-zinc-800" x-text="step"></p>
+                </div>
+              </div>
+            </template>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GIẢI PHÁP -->
-    <section style="background: white">
-      <div class="container">
-        <h2 class="section-title">
-          [TÊN SPA] – Giải pháp trị mụn chuyên sâu cho da nhạy cảm
-        </h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem">
-          Phương pháp kết hợp thảo dược + công nghệ hiện đại • An toàn • Không
-          kháng sinh • Không để lại sẹo
-        </p>
-        <div
-          style="
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-          "
-        >
-          <div class="card">🌿 Trị mụn thảo dược VIP</div>
-          <div class="card">🔬 Laser + Peel da sinh học</div>
-          <div class="card">🧴 Chăm sóc da tại nhà 30 ngày</div>
-        </div>
+    <!-- ══ OFFER ══════════════════════════════════════════════════════════ -->
+    <section class="py-14 bg-zinc-900 text-white text-center">
+      <div class="max-w-xl mx-auto px-4">
+        <p class="uppercase tracking-widest text-emerald-400 text-sm font-semibold" x-text="offer.label"></p>
+        <h2 class="text-3xl md:text-4xl font-black mt-3" x-text="offer.heading"></h2>
+        <button onclick="scrollToForm()"
+          class="mt-8 bg-emerald-500 hover:bg-emerald-400 text-white px-10 py-4 text-lg font-bold rounded-2xl shadow-xl transition"
+          x-text="offer.cta"></button>
       </div>
     </section>
 
-    <!-- LỢI ÍCH -->
-    <section id="benefit">
-      <div class="container">
-        <h2 class="section-title">Bạn sẽ nhận được gì?</h2>
-        <div class="benefit-grid">
-          <div class="card">✅ Da sạch mụn sau 28 ngày</div>
-          <div class="card">✅ Không tái phát 12 tháng</div>
-          <div class="card">✅ Da sáng mịn, đều màu</div>
-          <div class="card">✅ Tự tin chụp ảnh không filter</div>
-          <div class="card">✅ Tiết kiệm 70% chi phí</div>
-          <div class="card">✅ Hỗ trợ 1-1 suốt liệu trình</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOCIAL PROOF -->
-    <section style="background: #f8fafc">
-      <div class="container">
-        <h2 class="section-title">Chị em đã nói gì về [TÊN SPA]</h2>
-        <div class="review-grid">
-          <div class="card">
-            <p>“Mụn 7 năm hết sạch chỉ sau 3 buổi! Da giờ cực kỳ khỏe”</p>
-            <strong>– Chị Minh 28t, Quận 7</strong>
-          </div>
-          <div class="card">
-            <p>“Soi da miễn phí cực chi tiết. Voucher 100k thật luôn!”</p>
-            <strong>– Chị Ngọc 24t, Bình Thạnh</strong>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 2rem">
-          <img
-            src="https://picsum.photos/id/237/300/120"
-            alt="Before After"
-            style="border-radius: 12px"
-            loading="lazy"
-          />
-          <img
-            src="https://picsum.photos/id/201/300/120"
-            alt="Before After"
-            style="border-radius: 12px"
-            loading="lazy"
-          />
-        </div>
-        <p style="text-align: center; margin-top: 1rem">
-          📸 1.284 ảnh before-after thực tế (click để xem full)
-        </p>
-      </div>
-    </section>
-
-    <!-- QUY TRÌNH -->
-    <section id="process">
-      <div class="container">
-        <h2 class="section-title">Quy trình 5 bước đơn giản</h2>
-        <div
-          style="
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-          "
-        >
-          <div style="flex: 1 1 180px; text-align: center">
-            1️⃣ Soi da miễn phí
-          </div>
-          <div style="flex: 1 1 180px; text-align: center">
-            2️⃣ Tư vấn cá nhân hóa
-          </div>
-          <div style="flex: 1 1 180px; text-align: center">
-            3️⃣ Liệu trình chuyên sâu
-          </div>
-          <div style="flex: 1 1 180px; text-align: center">
-            4️⃣ Chăm sóc tại nhà
-          </div>
-          <div style="flex: 1 1 180px; text-align: center">
-            5️⃣ Theo dõi 30 ngày
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ƯU ĐÃI -->
-    <section
-      id="offer"
-      style="
-        background: linear-gradient(
-          90deg,
-          var(--primary-color),
-          var(--accent-color)
-        );
-        color: white;
-      "
-    >
-      <div class="container" style="text-align: center">
-        <h2>🎉 Ưu đãi HÔM NAY chỉ dành cho 30 chị đầu tiên</h2>
-        <h3 style="font-size: 2rem; margin: 1rem 0">
-          So da + Liệu trình thử + Voucher 100k + Tặng serum trị mụn
-        </h3>
-        <button
-          class="cta-btn"
-          style="font-size: 1.3rem; padding: 1.25rem 3rem"
-          onclick="
-            document
-              .getElementById('form')
-              .scrollIntoView({ behavior: 'smooth' })
-          "
-        >
-          NHẬN NGAY ƯU ĐÃI – CHỈ CÒN 7 SLOT
-        </button>
-      </div>
-    </section>
-
-    <!-- FORM -->
-    <section id="form">
-      <div class="container">
-        <div class="form-container">
-          <div>
-            <h2 style="color: var(--primary-dark)">
-              Đăng ký soi da MIỄN PHÍ ngay
-            </h2>
-            <p>Nhận lịch trong 5 phút • Voucher 100k tự động gửi</p>
-            <img
-              src="https://picsum.photos/id/64/400/300"
-              style="width: 100%; border-radius: 12px"
-              loading="lazy"
-            />
-          </div>
-          <form id="leadForm" onsubmit="handleSubmit(event)">
-            <input type="text" id="name" placeholder="Họ và tên *" required />
-            <input
-              type="tel"
-              id="phone"
-              placeholder="Số điện thoại *"
-              required
-            />
-            <select id="problem">
-              <option value="">Vấn đề da chính của bạn?</option>
-              <option>Mụn viêm + sẹo</option>
-              <option>Da nhạy cảm đỏ rát</option>
-              <option>Mụn ẩn + thâm</option>
-            </select>
-            <button
-              type="submit"
-              class="cta-btn"
-              style="background: var(--primary-color); width: 100%"
-            >
-              🚀 GỬI ĐĂNG KÝ &amp; NHẬN VOUCHER
-            </button>
-            <p style="font-size: 0.85rem; text-align: center; margin-top: 1rem">
-              🔒 Thông tin bảo mật • Chúng tôi chỉ gọi 1 lần
+    <!-- ══ FORM ════════════════════════════════════════════════════════════ -->
+    <section id="form" class="py-20 bg-emerald-600 text-white">
+      <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-start">
+        <!-- Left: trust info -->
+        <div class="space-y-6">
+          <h2 class="text-3xl font-black" x-text="form.heading"></h2>
+          <p class="text-emerald-100" x-text="form.subtitle"></p>
+          <ul class="space-y-4 mt-6">
+            <template x-for="item in benefits.items.slice(0,4)" :key="item.title">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check w-5 h-5 bg-white text-emerald-600 rounded-full flex items-center justify-center text-xs p-1"></i>
+                <span class="text-emerald-100 text-sm" x-text="item.title"></span>
+              </li>
+            </template>
+          </ul>
+          <div class="pt-6">
+            <p class="text-sm text-emerald-200">Hotline:
+              <a x-bind:href="'tel:' + phone" class="font-bold text-white underline" x-text="hotline"></a>
             </p>
+          </div>
+        </div>
+        <!-- Right: form -->
+        <div class="bg-white text-zinc-800 rounded-3xl p-8 shadow-2xl">
+          <form id="leadForm" class="space-y-4" onsubmit="handleSubmit(event)">
+            <input type="text" id="name" :placeholder="form.placeholderName"
+              class="w-full border border-zinc-200 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500" required />
+            <input type="tel" id="phone" :placeholder="form.placeholderPhone"
+              class="w-full border border-zinc-200 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500" required />
+            <input type="email" id="email" :placeholder="form.placeholderEmail"
+              class="w-full border border-zinc-200 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500" />
+            <textarea id="problem" rows="3" :placeholder="form.placeholderProblem"
+              class="w-full border border-zinc-200 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500"></textarea>
+            <button type="submit"
+              class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-2xl font-bold text-base transition"
+              x-text="form.submitBtn"></button>
           </form>
+          <p class="text-center text-xs text-zinc-400 mt-4 flex items-center justify-center gap-1">
+            <i class="fas fa-lock"></i> <span x-text="form.privacyNote"></span>
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section style="background: #f8fafc">
-      <div class="container">
-        <h2 class="section-title">Câu hỏi thường gặp</h2>
-        <div class="accordion">
-          <div class="accordion-item">
-            <div
-              class="faq-question"
-              onclick="
-                this.parentElement.querySelector('.answer').style.display =
-                  this.parentElement.querySelector('.answer').style.display ===
-                  'block'
-                    ? 'none'
-                    : 'block'
-              "
-            >
-              Chi phí bao nhiêu? <span>▼</span>
+    <!-- ══ FAQ ════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-3xl font-black text-center mb-10" x-text="faq.heading"></h2>
+        <div class="space-y-3">
+          <template x-for="item in faq.items" :key="item.q">
+            <div class="border border-zinc-200 rounded-2xl overflow-hidden">
+              <button onclick="toggleFAQ(this)"
+                class="w-full px-6 py-4 text-left font-semibold flex justify-between items-center hover:bg-zinc-50 transition">
+                <span x-text="item.q"></span>
+                <span class="faq-icon text-emerald-600 text-xl font-light">+</span>
+              </button>
+              <div class="accordion-content px-6 text-zinc-600 text-sm" x-text="item.a"></div>
             </div>
-            <div class="answer" style="display: none; padding-bottom: 1rem">
-              Chỉ từ 2.9 triệu/liệu trình 10 buổi (có trả góp 0%)
-            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
+    <footer class="bg-zinc-900 text-white py-12 border-t border-zinc-800">
+      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🌿</span>
+            <span class="font-black text-xl" x-text="brand"></span>
           </div>
-          <!-- Thêm 3-4 item tương tự -->
+          <p class="mt-3 text-zinc-400 text-sm" x-text="footer.tagline"></p>
+          <div class="mt-4 flex gap-4">
+            <a x-bind:href="zalo" target="_blank" class="text-2xl">💬</a>
+            <a x-bind:href="messenger" target="_blank" class="text-2xl">📘</a>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer style="background: #1e2937; color: white; padding: 3rem 0 1rem">
-      <div class="container">
-        <p style="text-align: center">
-          © 2026 [TÊN SPA] • Hotline:
-          <a href="tel:[HOTLINE]" style="color: #67e8f9">[HOTLINE]</a>
-        </p>
-        <div style="text-align: center; margin: 1rem 0">
-          <button
-            onclick="window.open('https://zalo.me/[ZALO_ID]')"
-            style="
-              background: #06d6a0;
-              color: white;
-              padding: 10px 20px;
-              border-radius: 9999px;
-            "
-          >
-            💬 Chat Zalo ngay
-          </button>
-          <button
-            onclick="window.open('https://m.me/[MESSENGER_ID]')"
-            style="
-              background: #1877f2;
-              color: white;
-              padding: 10px 20px;
-              border-radius: 9999px;
-              margin-left: 10px;
-            "
-          >
-            📘 Messenger
-          </button>
+        <div class="text-sm space-y-2 text-zinc-400">
+          <p>📍 <span x-text="address"></span></p>
+          <p>📞 <a x-bind:href="'tel:' + phone" class="underline" x-text="hotline"></a></p>
+          <p class="text-emerald-400 font-semibold">
+            <span x-text="footer.discountLabel"></span> <span x-text="footer.discountCode"></span>
+          </p>
         </div>
-        <p style="text-align: center; font-size: 0.8rem">
-          Template reusable • Dễ bán lại cho mọi spa • Chỉnh màu 3 giây
-        </p>
+        <div class="text-sm text-zinc-500">
+          <p>© 2026 <span x-text="brand"></span>. <span x-text="footer.copyright"></span></p>
+          <button onclick="window.scrollTo({top:0,behavior:'smooth'})"
+            class="mt-4 bg-zinc-800 hover:bg-emerald-600 px-5 py-2.5 rounded-full text-white text-sm transition"
+            x-text="footer.scrollTopBtn"></button>
+        </div>
       </div>
     </footer>
 
-    <!-- STICKY CTA MOBILE -->
-    <div class="sticky-cta">
-      <button
-        onclick="window.open('tel:[HOTLINE]')"
-        style="background: var(--primary-dark); color: white"
-      >
-        📞 Gọi ngay
-      </button>
-      <button
-        onclick="window.open('https://zalo.me/[ZALO_ID]')"
-        style="background: #06d6a0; color: white"
-      >
-        💬 Zalo
-      </button>
-      <button
-        onclick="
-          document.getElementById('form').scrollIntoView({ behavior: 'smooth' })
-        "
-        style="background: var(--accent-color); color: white"
-      >
-        ✍️ Đăng ký ngay
-      </button>
+    <!-- ══ STICKY CTA (mobile) ════════════════════════════════════════════ -->
+    <div class="md:hidden sticky-cta bg-zinc-900 border border-emerald-600 text-white shadow-2xl rounded-2xl flex items-center gap-3 px-4 py-3 w-[92%]">
+      <button onclick="scrollToForm()" class="flex-1 text-center font-bold text-sm" x-text="stickyCta"></button>
+      <button onclick="window.location.href = 'tel:' + window.CLIENT.phone"
+        class="bg-emerald-600 text-white w-10 h-10 rounded-xl flex items-center justify-center">📞</button>
     </div>
 
     <script>
-      // JS thuần - cực dễ chỉnh
+      function scrollToForm() {
+        document.getElementById("form").scrollIntoView({ behavior: "smooth" });
+      }
       function handleSubmit(e) {
         e.preventDefault();
-        const name = document.getElementById("name").value;
-        const phone = document.getElementById("phone").value;
-        if (name && phone) {
-          alert(
-            `✅ Cảm ơn chị ${name}! Lịch soi da đã được gửi qua Zalo. Nhân viên sẽ gọi trong 5 phút.`,
-          );
-          // Thực tế: gửi POST đến Google Form hoặc API của bạn
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        if (name.length < 3) { alert(CLIENT.alerts.nameError); return; }
+        if (phone.length < 9) { alert(CLIENT.alerts.phoneError); return; }
+        alert(CLIENT.alerts.successMsg);
+        e.target.reset();
+      }
+      function toggleFAQ(btn) {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector(".faq-icon");
+        if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+          content.style.maxHeight = "0px";
+          icon.textContent = "+";
         } else {
-          alert("Vui lòng điền họ tên và số điện thoại");
+          document.querySelectorAll(".accordion-content").forEach(c => c.style.maxHeight = "0px");
+          document.querySelectorAll(".faq-icon").forEach(i => i.textContent = "+");
+          content.style.maxHeight = content.scrollHeight + "px";
+          icon.textContent = "−";
         }
       }
-
-      // Toggle mobile menu (có thể mở rộng)
-      document.querySelector(".hamburger").addEventListener("click", () => {
-        alert(
-          "Menu mobile: Dịch vụ • Lợi ích • Quy trình • Tư vấn (bạn có thể thêm div dropdown)",
-        );
-      });
-
-      // Smooth scroll cho mọi link nội bộ
-      document.querySelectorAll('a[href^="#"]').forEach((a) => {
-        a.addEventListener("click", (e) => {
-          e.preventDefault();
-          document
-            .querySelector(a.getAttribute("href"))
-            .scrollIntoView({ behavior: "smooth" });
-        });
-      });
-
-      // Accordion đơn giản (đã có inline onclick, có thể mở rộng)
-
-      console.log(
-        "%c✅ Template reusable đã sẵn sàng! Chỉ cần thay 7 chỗ là bán cho spa khác.",
-        "color:#10b981;font-size:16px",
-      );
     </script>
   </body>
 </html>

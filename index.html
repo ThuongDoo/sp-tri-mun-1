@@ -3,10 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      GreenDerm • Thoát Mụn – Da Khỏe • Tư Vấn Miễn Phí + Voucher 100k
-    </title>
+    <title>Loading...</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="./data.js"></script>
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
@@ -57,12 +56,9 @@
     </style>
   </head>
   <!-- // TODO: Thay tên thương hiệu, số điện thoại, link Zalo/Mess, ảnh thật của bạn
-  vào code bên dưới -->
+  vào data.js -->
 
-  <body
-    class="bg-zinc-50 text-zinc-800"
-    x-data="{ brand: 'GreenDerm', hotline: '0987 654 321', address: '123 Nguyễn Thị Minh Khai, Q.3, TP.HCM', reviews: '1243' }"
-  >
+  <body class="bg-zinc-50 text-zinc-800" x-data="CLIENT">
     <!-- HEADER -->
     <header class="bg-white shadow-sm sticky top-0 z-40">
       <div
@@ -80,21 +76,19 @@
           ></h1>
         </div>
         <nav class="hidden md:flex gap-6 text-sm font-medium">
-          <a href="#pain" class="hover:text-emerald-600">Vấn đề</a>
-          <a href="#solution" class="hover:text-emerald-600">Giải pháp</a>
-          <a href="#review" class="hover:text-emerald-600">Khách hàng</a>
-          <a href="#process" class="hover:text-emerald-600">Quy trình</a>
-          <a href="#form" class="hover:text-emerald-600">Đăng ký</a>
+          <template x-for="link in nav.links" :key="link.href">
+            <a :href="link.href" class="hover:text-emerald-600" x-text="link.label"></a>
+          </template>
         </nav>
         <div class="flex items-center gap-3">
           <a
-            href="https://zalo.me/0987654321"
+            x-bind:href="zalo"
             target="_blank"
             class="text-emerald-600 hover:text-emerald-700"
             ><i class="fab fa-whatsapp text-xl"></i
           ></a>
           <a
-            href="https://m.me/greenderm"
+            x-bind:href="messenger"
             target="_blank"
             class="text-emerald-600 hover:text-emerald-700"
             ><i class="fab fa-facebook-messenger text-xl"></i
@@ -102,9 +96,8 @@
           <button
             onclick="scrollToForm()"
             class="bg-emerald-600 text-white px-5 py-2 rounded-full font-medium text-sm hover:bg-emerald-700 transition"
-          >
-            Tư vấn ngay
-          </button>
+            x-text="nav.cta"
+          ></button>
         </div>
       </div>
     </header>
@@ -122,27 +115,26 @@
             <span
               class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
             ></span>
-            Đã giúp 8.742 chị lấy lại làn da tự tin
+            <span x-text="hero.badge"></span>
           </div>
           <h1
             class="heading-font text-4xl md:text-5xl lg:text-6xl leading-tight font-bold"
           >
-            Mụn dai dẳng + Da nhạy cảm?<br />
-            <span class="text-emerald-200">Thoát mụn chỉ sau 28 ngày</span>
+            <span x-text="hero.headline1"></span><br />
+            <span class="text-emerald-200" x-text="hero.headline2"></span>
           </h1>
           <p class="text-lg md:text-xl text-emerald-100 max-w-md">
-            Phương pháp thảo dược cao cấp – Không kháng sinh – Không tái phát<br />
-            <strong>MIỄN PHÍ soi da + Voucher 100k</strong> hôm nay
+            <span x-text="hero.subtext"></span><br />
+            <strong x-text="hero.subCta"></strong>
           </p>
           <div class="flex flex-wrap gap-4">
             <button
               onclick="scrollToForm()"
               class="bg-white text-emerald-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:scale-105 transition flex-1 md:flex-none"
-            >
-              👉 Đăng ký soi da MIỄN PHÍ ngay
-            </button>
+              x-text="hero.ctaBtn"
+            ></button>
             <a
-              href="tel:0987654321"
+              x-bind:href="'tel:' + phone"
               class="border-2 border-white px-6 py-4 rounded-2xl flex items-center gap-2 font-medium"
               x-text="'Gọi ngay ' + hotline"
             >
@@ -160,19 +152,19 @@
                 class="w-7 h-7 rounded-full ring-2 ring-white"
               />
               <img
-                src="https://picsum.photos/id/201/32/32"
+                src="https://picsum.photos/id/202/32/32"
                 class="w-7 h-7 rounded-full ring-2 ring-white"
               />
             </div>
-            <p x-text="'⭐⭐⭐⭐⭐ 4.98/5 • ' + reviews + ' đánh giá thật'"></p>
+            <p x-text="'⭐⭐⭐⭐⭐ ' + hero.rating + ' • ' + reviews + ' ' + hero.ratingLabel"></p>
           </div>
           <div class="flex gap-4 text-xs">
-            <span class="flex items-center gap-1"
-              ><i class="fas fa-shield-alt"></i> Bảo hành 6 tháng</span
-            >
-            <span class="flex items-center gap-1"
-              ><i class="fas fa-medal"></i> Chứng chỉ Bộ Y tế</span
-            >
+            <template x-for="item in hero.trustItems" :key="item.icon">
+              <span class="flex items-center gap-1">
+                <i :class="'fas ' + item.icon"></i>
+                <span x-text="item.text"></span>
+              </span>
+            </template>
           </div>
         </div>
         <!-- Right -->
@@ -180,12 +172,12 @@
           <img
             src="https://picsum.photos/id/201/600/680"
             class="rounded-3xl shadow-2xl w-full object-cover"
-            alt="Chị gái da sạch mịn sau trị mụn GreenDerm"
+            :alt="'Chị gái da sạch mịn sau trị mụn ' + brand"
           />
           <div
             class="absolute -bottom-6 -left-6 bg-white text-emerald-700 p-4 rounded-2xl shadow-xl"
           >
-            <p class="font-bold">Trước → Sau 28 ngày</p>
+            <p class="font-bold" x-text="hero.beforeAfterLabel"></p>
             <img
               src="https://picsum.photos/id/237/280/120"
               class="rounded-xl mt-2"
@@ -196,8 +188,8 @@
           >
             <span class="text-emerald-500 text-3xl">✅</span>
             <div>
-              <p class="font-semibold">Chị Lan, 26t</p>
-              <p class="text-xs">Mụn hết 95% • Da không còn đỏ</p>
+              <p class="font-semibold" x-text="hero.testimonialName"></p>
+              <p class="text-xs" x-text="hero.testimonialResult"></p>
             </div>
           </div>
         </div>
@@ -206,36 +198,24 @@
       <div
         class="bg-white/10 backdrop-blur py-3 text-center text-xs flex flex-wrap justify-center gap-x-8 gap-y-2"
       >
-        <span>🏆 Top 1 trị mụn thảo dược 2025</span>
-        <span>🔒 Bảo mật thông tin 100%</span>
-        <span>🚀 Hơn 8700 khách đã thành công</span>
+        <template x-for="item in trustBar" :key="item">
+          <span x-text="item"></span>
+        </template>
       </div>
     </section>
 
     <!-- PAIN POINTS -->
     <section id="pain" class="section-padding bg-white">
       <div class="max-w-5xl mx-auto text-center">
-        <p class="text-emerald-600 font-medium">Bạn có đang gặp phải?</p>
-        <h2 class="text-3xl font-bold mt-2">
-          Những nỗi đau mà 99% chị em từng trải qua
-        </h2>
+        <p class="text-emerald-600 font-medium" x-text="pain.label"></p>
+        <h2 class="text-3xl font-bold mt-2" x-text="pain.heading"></h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-          <div class="bg-zinc-100 p-5 rounded-2xl card-hover text-center">
-            <div class="text-4xl mb-3">🔥</div>
-            <p class="font-semibold">Mụn viêm, mụn nang, mụn đầu đen</p>
-          </div>
-          <div class="bg-zinc-100 p-5 rounded-2xl card-hover text-center">
-            <div class="text-4xl mb-3">😣</div>
-            <p class="font-semibold">Da đỏ rát, kích ứng mỹ phẩm</p>
-          </div>
-          <div class="bg-zinc-100 p-5 rounded-2xl card-hover text-center">
-            <div class="text-4xl mb-3">💸</div>
-            <p class="font-semibold">Tốn tiền trị nhiều nơi vẫn tái phát</p>
-          </div>
-          <div class="bg-zinc-100 p-5 rounded-2xl card-hover text-center">
-            <div class="text-4xl mb-3">😔</div>
-            <p class="font-semibold">Tự ti, ngại chụp ảnh, ngại ra đường</p>
-          </div>
+          <template x-for="item in pain.items" :key="item.text">
+            <div class="bg-zinc-100 p-5 rounded-2xl card-hover text-center">
+              <div class="text-4xl mb-3" x-text="item.emoji"></div>
+              <p class="font-semibold" x-text="item.text"></p>
+            </div>
+          </template>
         </div>
       </div>
     </section>
@@ -246,48 +226,27 @@
         <div class="text-center mb-10">
           <h2
             class="text-3xl font-bold"
-            x-text="brand + ' – Giải pháp dành riêng cho da mụn nhạy cảm'"
+            x-text="brand + ' ' + solution.headingSuffix"
           ></h2>
-          <p class="mt-3 text-zinc-600">
-            Kết hợp thảo dược Việt Nam + Công nghệ laser lạnh không đau
-          </p>
+          <p class="mt-3 text-zinc-600" x-text="solution.subtitle"></p>
         </div>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-white rounded-3xl p-6 shadow">
-            <img
-              src="https://picsum.photos/id/201/300/200"
-              class="rounded-2xl w-full"
-            />
-            <h3 class="font-bold mt-4">Liệu trình thảo dược cao cấp</h3>
-            <p class="text-sm mt-2">
-              Kem trị mụn từ lá trầu không, nghệ đen, trà xanh hữu cơ
-            </p>
-          </div>
-          <div class="bg-white rounded-3xl p-6 shadow">
-            <img
-              src="https://picsum.photos/id/237/300/200"
-              class="rounded-2xl w-full"
-            />
-            <h3 class="font-bold mt-4">Soi da 3D + Cá nhân hóa</h3>
-            <p class="text-sm mt-2">
-              Bác sĩ da liễu 10 năm kinh nghiệm tư vấn trực tiếp
-            </p>
-          </div>
-          <div class="bg-white rounded-3xl p-6 shadow relative">
-            <div
-              class="absolute top-4 right-4 bg-rose-500 text-white text-xs px-3 py-1 rounded-full"
-            >
-              BEST SELLER
+          <template x-for="card in solution.cards" :key="card.title">
+            <div class="bg-white rounded-3xl p-6 shadow relative">
+              <div
+                x-show="card.badge"
+                class="absolute top-4 right-4 bg-rose-500 text-white text-xs px-3 py-1 rounded-full"
+                x-text="card.badge"
+              ></div>
+              <img
+                :src="'https://picsum.photos/id/' + card.imgId + '/300/200'"
+                class="rounded-2xl w-full"
+              />
+              <h3 class="font-bold mt-4" x-text="card.title"></h3>
+              <p x-show="card.desc" class="text-sm mt-2" x-text="card.desc"></p>
+              <p x-show="card.price" class="text-emerald-600 font-semibold" x-text="card.price"></p>
             </div>
-            <img
-              src="https://picsum.photos/id/180/300/200"
-              class="rounded-2xl w-full"
-            />
-            <h3 class="font-bold mt-4">Combo 28 ngày “Da sạch mãi mãi”</h3>
-            <p class="text-emerald-600 font-semibold">
-              Chỉ từ 2.990k (giảm 40% hôm nay)
-            </p>
-          </div>
+          </template>
         </div>
       </div>
     </section>
@@ -295,49 +254,17 @@
     <!-- BENEFITS -->
     <section class="section-padding bg-white">
       <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-center text-3xl font-bold mb-8">
-          Bạn sẽ nhận được gì?
-        </h2>
+        <h2 class="text-center text-3xl font-bold mb-8" x-text="benefits.heading"></h2>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-          <div class="flex gap-4">
-            <span class="text-3xl">🌿</span>
-            <div>
-              <p class="font-semibold">Mụn giảm 90% chỉ sau 4 tuần</p>
-              <p class="text-sm text-zinc-600">Đã được 2.300+ khách xác nhận</p>
+          <template x-for="item in benefits.items" :key="item.title">
+            <div class="flex gap-4">
+              <span class="text-3xl" x-text="item.emoji"></span>
+              <div>
+                <p class="font-semibold" x-text="item.title"></p>
+                <p x-show="item.sub" class="text-sm text-zinc-600" x-text="item.sub"></p>
+              </div>
             </div>
-          </div>
-          <div class="flex gap-4">
-            <span class="text-3xl">🧴</span>
-            <div>
-              <p class="font-semibold">Da không khô, không bong tróc</p>
-              <p class="text-sm text-zinc-600">An toàn cho da nhạy cảm nhất</p>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <span class="text-3xl">🔄</span>
-            <div>
-              <p class="font-semibold">Không tái phát trong 6 tháng</p>
-              <p class="text-sm text-zinc-600">Cam kết bằng hợp đồng</p>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <span class="text-3xl">📸</span>
-            <div>
-              <p class="font-semibold">Tự tin chụp ảnh • Không cần filter</p>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <span class="text-3xl">💰</span>
-            <div>
-              <p class="font-semibold">Tiết kiệm 70% so với spa thông thường</p>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <span class="text-3xl">❤️</span>
-            <div>
-              <p class="font-semibold">Nhóm hỗ trợ Zalo 24/7 suốt liệu trình</p>
-            </div>
-          </div>
+          </template>
         </div>
       </div>
     </section>
@@ -345,32 +272,27 @@
     <!-- SOCIAL PROOF -->
     <section id="review" class="section-padding bg-zinc-100">
       <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-center text-3xl font-bold mb-8">
-          Khách hàng thật – Kết quả thật
-        </h2>
+        <h2 class="text-center text-3xl font-bold mb-8" x-text="reviewsSection.heading"></h2>
         <div class="grid md:grid-cols-3 gap-6">
           <!-- Review 1 -->
           <div class="bg-white p-5 rounded-3xl">
             <div class="flex justify-between">
               <div>⭐⭐⭐⭐⭐</div>
               <img
-                src="https://picsum.photos/id/64/48/48"
+                :src="'https://picsum.photos/id/' + reviewsSection.items[0].imgId + '/48/48'"
                 class="rounded-full"
               />
             </div>
-            <p class="mt-3">
-              "Mụn cystic hết sạch sau 3 tuần. Da mình giờ trắng hồng luôn ạ!
-              Cảm ơn GreenDerm nhiều lắm 💚"
-            </p>
-            <p class="text-xs mt-4">— Chị Minh Thư, 24t • Quận 7</p>
+            <p class="mt-3" x-text="'\"' + reviewsSection.items[0].quote + '\"'"></p>
+            <p class="text-xs mt-4" x-text="'— ' + reviewsSection.items[0].author"></p>
             <img
-              src="https://picsum.photos/id/201/300/100"
+              :src="'https://picsum.photos/id/' + reviewsSection.items[0].afterImgId + '/300/100'"
               class="mt-4 rounded-xl w-full"
             />
           </div>
-          <!-- Review 2 + Before After -->
+          <!-- Before & After -->
           <div class="bg-white p-5 rounded-3xl md:col-span-1">
-            <p class="font-bold">Trước &amp; Sau 28 ngày</p>
+            <p class="font-bold" x-text="reviewsSection.beforeAfterLabel"></p>
             <div class="flex gap-2 mt-3">
               <img
                 src="https://picsum.photos/id/180/140/140"
@@ -382,31 +304,24 @@
               />
             </div>
             <div class="flex justify-between text-xs mt-2">
-              <span>Ngày 1</span>
-              <span class="text-emerald-600 font-bold">Ngày 28 ✨</span>
+              <span x-text="reviewsSection.beforeAfterDay1"></span>
+              <span class="text-emerald-600 font-bold" x-text="reviewsSection.beforeAfterDay28"></span>
             </div>
             <button
-              onclick="alert('Cảm ơn bạn đã xem! Bạn cũng sẽ như vậy 💚')"
+              :onclick="'alert(CLIENT.reviewsSection.beforeAfterMsg)'"
               class="w-full mt-4 bg-emerald-600 text-white py-3 rounded-2xl"
-            >
-              Tôi cũng muốn như chị này →
-            </button>
+              x-text="reviewsSection.beforeAfterBtn"
+            ></button>
           </div>
-          <!-- Review 3 -->
+          <!-- Review 2 -->
           <div class="bg-white p-5 rounded-3xl">
-            <p>
-              "Mình bị dị ứng mỹ phẩm nặng, sau khi dùng liệu trình của
-              GreenDerm da hết đỏ, mụn khô chỉ sau 10 ngày. Bác sĩ siêu tận
-              tình!"
-            </p>
-            <p class="mt-4 text-xs">
-              — Chị Ngọc Hà, 29t • Bình Thạnh • 1.2k lượt thích
-            </p>
+            <p x-text="'\"' + reviewsSection.items[1].quote + '\"'"></p>
+            <p class="mt-4 text-xs" x-text="'— ' + reviewsSection.items[1].author"></p>
           </div>
         </div>
         <p
           class="text-center mt-8 text-emerald-600 font-medium"
-          x-text="'Và còn ' + reviews + ' đánh giá 5 sao khác trên Google & Facebook'"
+          x-text="reviewsSection.morePrefix + reviews + reviewsSection.moreSuffix"
         ></p>
       </div>
     </section>
@@ -414,9 +329,7 @@
     <!-- PROCESS -->
     <section id="process" class="section-padding bg-white">
       <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center">
-          Quy trình 5 bước đơn giản
-        </h2>
+        <h2 class="text-3xl font-bold text-center" x-text="process.heading"></h2>
         <div class="mt-10 grid md:grid-cols-5 gap-4 text-center">
           <div>
             <div
@@ -424,7 +337,7 @@
             >
               1
             </div>
-            <p class="font-medium mt-3">Đăng ký soi da online</p>
+            <p class="font-medium mt-3" x-text="process.steps[0]"></p>
           </div>
           <div class="hidden md:block text-4xl text-emerald-300">→</div>
           <div>
@@ -433,7 +346,7 @@
             >
               2
             </div>
-            <p class="font-medium mt-3">Bác sĩ gọi video soi da</p>
+            <p class="font-medium mt-3" x-text="process.steps[1]"></p>
           </div>
           <div class="hidden md:block text-4xl text-emerald-300">→</div>
           <div>
@@ -442,7 +355,7 @@
             >
               3
             </div>
-            <p class="font-medium mt-3">Nhận phác đồ + sản phẩm</p>
+            <p class="font-medium mt-3" x-text="process.steps[2]"></p>
           </div>
           <div class="hidden md:block text-4xl text-emerald-300">→</div>
           <div>
@@ -451,7 +364,7 @@
             >
               4
             </div>
-            <p class="font-medium mt-3">Theo dõi hàng tuần qua Zalo</p>
+            <p class="font-medium mt-3" x-text="process.steps[3]"></p>
           </div>
           <div class="hidden md:block text-4xl text-emerald-300">→</div>
           <div>
@@ -460,7 +373,7 @@
             >
               5
             </div>
-            <p class="font-medium mt-3">Da sạch – Tự tin – Nhận quà</p>
+            <p class="font-medium mt-3" x-text="process.steps[4]"></p>
           </div>
         </div>
       </div>
@@ -471,18 +384,13 @@
       class="py-8 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-center"
     >
       <div class="max-w-xl mx-auto px-4">
-        <p class="uppercase tracking-widest text-emerald-200">
-          Ưu đãi chỉ hôm nay • Hết ngày 25/03
-        </p>
-        <h2 class="text-4xl font-bold mt-2">
-          Tư vấn soi da + Voucher 100k • Hoàn toàn MIỄN PHÍ
-        </h2>
+        <p class="uppercase tracking-widest text-emerald-200" x-text="offer.label"></p>
+        <h2 class="text-4xl font-bold mt-2" x-text="offer.heading"></h2>
         <button
           onclick="scrollToForm()"
           class="mt-6 bg-white text-emerald-700 px-10 py-4 text-xl font-bold rounded-3xl shadow-xl hover:bg-amber-300 transition"
-        >
-          Nhận ngay ưu đãi 🔥 (Còn 37 suất)
-        </button>
+          x-text="offer.cta"
+        ></button>
       </div>
     </section>
 
@@ -490,12 +398,8 @@
     <section id="form" class="section-padding bg-zinc-900 text-white">
       <div class="max-w-2xl mx-auto px-4">
         <div class="bg-white text-zinc-800 rounded-3xl p-8 shadow-2xl">
-          <h2 class="text-3xl font-bold text-center">
-            Đăng ký soi da miễn phí + nhận voucher 100k
-          </h2>
-          <p class="text-center text-zinc-500 mt-2">
-            Chỉ mất 30 giây • Bác sĩ gọi lại trong 5 phút
-          </p>
+          <h2 class="text-3xl font-bold text-center" x-text="form.heading"></h2>
+          <p class="text-center text-zinc-500 mt-2" x-text="form.subtitle"></p>
 
           <form
             id="leadForm"
@@ -506,7 +410,7 @@
               <input
                 type="text"
                 id="name"
-                placeholder="Họ và tên *"
+                :placeholder="form.placeholderName"
                 class="w-full border rounded-2xl px-5 py-3 focus:outline-none focus:border-emerald-500"
                 required
               />
@@ -515,36 +419,36 @@
               <input
                 type="tel"
                 id="phone"
-                placeholder="Số điện thoại *"
+                :placeholder="form.placeholderPhone"
                 class="w-full border rounded-2xl px-5 py-3 focus:outline-none focus:border-emerald-500"
                 required
               />
               <input
                 type="email"
                 id="email"
-                placeholder="Email (không bắt buộc)"
+                :placeholder="form.placeholderEmail"
               />
             </div>
             <textarea
               id="problem"
               rows="3"
-              placeholder="Mô tả tình trạng da của bạn (ví dụ: mụn viêm 2 năm, da dầu...)"
+              :placeholder="form.placeholderProblem"
               class="w-full border rounded-2xl px-5 py-3"
             ></textarea>
 
             <button
               type="submit"
               class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-5 rounded-3xl font-bold text-lg shadow"
-            >
-              🚀 GỬI ĐĂNG KÝ – NHẬN VOUCHER NGAY
-            </button>
+              x-text="form.submitBtn"
+            ></button>
           </form>
 
           <div class="flex justify-center gap-8 mt-6 text-xs">
             <div class="flex items-center gap-1">
-              <i class="fas fa-lock"></i> Bảo mật tuyệt đối
+              <i class="fas fa-lock"></i>
+              <span x-text="form.privacyNote"></span>
             </div>
-            <div>📍 12 chi nhánh TP.HCM &amp; Hà Nội</div>
+            <div>📍 <span x-text="form.branches"></span></div>
           </div>
         </div>
       </div>
@@ -553,86 +457,60 @@
     <!-- FAQ -->
     <section class="section-padding bg-white">
       <div class="max-w-3xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-8">Câu hỏi thường gặp</h2>
+        <h2 class="text-3xl font-bold text-center mb-8" x-text="faq.heading"></h2>
         <div class="space-y-4">
-          <div class="border rounded-2xl overflow-hidden">
-            <button
-              onclick="toggleFAQ(this)"
-              class="w-full px-5 py-4 text-left font-medium flex justify-between"
-            >
-              Liệu trình có đau không?
-              <span class="faq-icon">↓</span>
-            </button>
-            <div class="accordion-content px-5 pb-4 text-zinc-600">
-              Hoàn toàn không đau. Chúng tôi dùng laser lạnh + thảo dược nên rất
-              dịu nhẹ.
+          <template x-for="item in faq.items" :key="item.q">
+            <div class="border rounded-2xl overflow-hidden">
+              <button
+                onclick="toggleFAQ(this)"
+                class="w-full px-5 py-4 text-left font-medium flex justify-between"
+              >
+                <span x-text="item.q"></span>
+                <span class="faq-icon">↓</span>
+              </button>
+              <div class="accordion-content px-5 pb-4 text-zinc-600" x-text="item.a"></div>
             </div>
-          </div>
-          <div class="border rounded-2xl overflow-hidden">
-            <button
-              onclick="toggleFAQ(this)"
-              class="w-full px-5 py-4 text-left font-medium flex justify-between"
-            >
-              Chi phí bao nhiêu?
-              <span class="faq-icon">↓</span>
-            </button>
-            <div class="accordion-content px-5 pb-4 text-zinc-600">
-              Chỉ từ 2.990k cho combo 28 ngày (đã giảm 40% cho 50 người đầu
-              tiên).
-            </div>
-          </div>
-          <div class="border rounded-2xl overflow-hidden">
-            <button
-              onclick="toggleFAQ(this)"
-              class="w-full px-5 py-4 text-left font-medium flex justify-between"
-            >
-              Có cam kết hiệu quả không?
-              <span class="faq-icon">↓</span>
-            </button>
-            <div class="accordion-content px-5 pb-4 text-zinc-600">
-              Có! Hoàn tiền 100% nếu mụn không giảm ≥80% sau 28 ngày.
-            </div>
-          </div>
+          </template>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER + STICKY CTA -->
+    <!-- FOOTER -->
     <footer class="bg-zinc-900 text-white py-12">
       <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
         <div>
           <div class="flex items-center gap-3 text-white">
             <span class="text-3xl">🌿</span>
-            <span class="font-bold text-2xl">GreenDerm</span>
+            <span class="font-bold text-2xl" x-text="brand"></span>
           </div>
-          <p class="mt-3 text-zinc-400">
-            Trị mụn thảo dược • Da nhạy cảm • Uy tín từ 2019
-          </p>
+          <p class="mt-3 text-zinc-400" x-text="footer.tagline"></p>
           <div class="mt-4 flex gap-4">
-            <a href="https://zalo.me/0987654321" class="text-3xl">💬</a>
-            <a href="https://m.me/greenderm" class="text-3xl">📘</a>
+            <a x-bind:href="zalo" class="text-3xl" target="_blank">💬</a>
+            <a x-bind:href="messenger" class="text-3xl" target="_blank">📘</a>
           </div>
           <p class="text-xs mt-8">
-            Hotline: <a href="tel:0987654321" class="underline">0987 654 321</a>
+            Hotline:
+            <a
+              x-bind:href="'tel:' + phone"
+              class="underline"
+              x-text="hotline"
+            ></a>
           </p>
         </div>
         <div class="text-sm space-y-2">
-          <p>📍 123 Nguyễn Thị Minh Khai, Q.3, TP.HCM</p>
-          <p>© 2026 GreenDerm. All rights reserved.</p>
+          <p><span>📍</span> <span x-text="address"></span></p>
+          <p>© 2026 <span x-text="brand"></span>. <span x-text="footer.copyright"></span></p>
           <p class="text-emerald-400">
-            Mã giảm giá hôm nay: <strong>FREESKIN100</strong>
+            <span x-text="footer.discountLabel"></span> <strong x-text="footer.discountCode"></strong>
           </p>
         </div>
         <div>
           <button
             onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
             class="bg-zinc-700 hover:bg-emerald-600 px-6 py-3 rounded-full w-full"
-          >
-            ↑ Về đầu trang
-          </button>
-          <p class="text-center text-xs mt-6 opacity-50">
-            Code được tạo hoàn chỉnh theo yêu cầu • Chỉnh sửa thoải mái
-          </p>
+            x-text="footer.scrollTopBtn"
+          ></button>
+          <p class="text-center text-xs mt-6 opacity-50" x-text="footer.footerNote"></p>
         </div>
       </div>
     </footer>
@@ -642,12 +520,10 @@
       class="md:hidden sticky-cta bg-emerald-600 text-white shadow-2xl rounded-3xl flex items-center justify-between px-4 py-3 w-[92%]"
     >
       <div class="flex-1 text-center">
-        <button onclick="scrollToForm()" class="font-bold">
-          Nhận voucher 100k + soi da miễn phí
-        </button>
+        <button onclick="scrollToForm()" class="font-bold" x-text="stickyCta"></button>
       </div>
       <button
-        onclick="window.location.href = 'tel:0987654321'"
+        onclick="window.location.href = 'tel:' + window.CLIENT.phone"
         class="bg-white text-emerald-600 w-10 h-10 rounded-2xl flex items-center justify-center"
       >
         📞
@@ -655,7 +531,6 @@
     </div>
 
     <script>
-      // Tailwind script đã load
       function scrollToForm() {
         document.getElementById("form").scrollIntoView({ behavior: "smooth" });
       }
@@ -665,20 +540,37 @@
         const name = document.getElementById("name").value.trim();
         const phone = document.getElementById("phone").value.trim();
 
-        if (name.length < 3) {
-          alert("Vui lòng nhập họ tên đầy đủ 💚");
-          return;
-        }
-        if (phone.length < 9) {
-          alert("Số điện thoại chưa đúng 💚");
-          return;
-        }
+        if (name.length < 3) { alert(CLIENT.alerts.nameError); return; }
+        if (phone.length < 9) { alert(CLIENT.alerts.phoneError); return; }
 
-        alert(
-          "✅ Đăng ký thành công!\nBác sĩ sẽ gọi cho bạn trong 3-5 phút.\nVoucher 100k đã gửi qua Zalo.\nCảm ơn chị đã tin tưởng GreenDerm ❤️",
-        );
-        // Reset form
-        e.target.reset();
+        const btn = e.target.querySelector("[type=submit]");
+        const originalText = btn.textContent;
+        btn.textContent = "Đang gửi...";
+        btn.disabled = true;
+
+        const payload = new URLSearchParams({
+          name,
+          phone,
+          email:   document.getElementById("email").value.trim(),
+          problem: document.getElementById("problem").value.trim(),
+          source:  window.location.href,
+          timestamp: new Date().toLocaleString("vi-VN"),
+        });
+
+        const finish = () => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          alert(CLIENT.alerts.successMsg);
+          e.target.reset();
+        };
+
+        if (CLIENT.sheetUrl) {
+          fetch(CLIENT.sheetUrl, { method: "POST", mode: "no-cors", body: payload })
+            .then(finish)
+            .catch(finish);
+        } else {
+          finish();
+        }
       }
 
       function toggleFAQ(btn) {
@@ -689,7 +581,6 @@
           content.style.maxHeight = "0px";
           icon.textContent = "↓";
         } else {
-          // Close all others
           document
             .querySelectorAll(".accordion-content")
             .forEach((c) => (c.style.maxHeight = "0px"));
@@ -702,7 +593,6 @@
         }
       }
 
-      // Simple lazy load simulation + smooth scroll
       window.addEventListener("scroll", () => {
         if (window.scrollY > 300) {
           document.querySelectorAll("img").forEach((img) => {
@@ -711,33 +601,11 @@
         }
       });
 
-      // Keyboard Enter on form
       document
         .getElementById("leadForm")
         .addEventListener("keypress", function (e) {
           if (e.key === "Enter") handleSubmit(e);
         });
-
-      // Auto highlight first CTA
-      console.log(
-        "%c✅ Landing page hoàn chỉnh đã sẵn sàng! Thay ảnh, số điện thoại, text theo comment bên dưới.",
-        "color:#10b981; font-size:16px",
-      );
     </script>
-
-    <!-- COMMENT CHỈNH SỬA -->
-    <!-- 
-    CÁCH CHỈNH NHANH:
-    1. Thay logo/text: tìm "GreenDerm" → đổi tên thương hiệu
-    2. Thay ảnh: tìm picsum.photos → thay bằng link ảnh thật của bạn (giữ kích thước tương tự)
-    3. Số điện thoại: tìm 0987654321 → đổi toàn bộ
-    4. Link Zalo/Mess: thay href
-    5. Nội dung text: tìm các đoạn chữ tiếng Việt → chỉnh thoải mái
-    6. Thêm section hoặc màu: rất dễ vì code dùng Tailwind + comment rõ ràng
-    7. Deploy: copy toàn bộ code vào file index.html → up lên hosting (Netlify/Vercel cực nhanh)
-
-    Code đã tối ưu 100% theo yêu cầu của bạn: mobile-first, 1 file, validate, sticky CTA, hiệu ứng nhẹ, chuyển đổi cao.
-    Chúc bạn chuyển đổi bùng nổ! 💚
-    -->
   </body>
 </html>
