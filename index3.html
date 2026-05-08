@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      [TÊN SPA] • Thoát Mụn – Da Khỏe • Tư Vấn Miễn Phí + Voucher 100k
+    </title>
+    <meta
+      name="description"
+      content="[TÊN SPA] giúp chị em thoát mụn dai dẳng, da nhạy cảm chỉ sau 28 ngày. Soi da miễn phí + Voucher 100k"
+    />
+
+    <!-- ==================== KHU VỰC CHỈNH NHANH – CHỈ SỬA TẠI ĐÂY ==================== -->
+    <script>
+      window.CONFIG = {
+        spaName: "GreenDerm", // Tên spa / thương hiệu
+        slogan: "Thoát Mụn – Da Khỏe Chỉ Sau 28 Ngày",
+        hotline: "0987 654 321",
+        zaloLink: "https://zalo.me/0987654321",
+        messengerLink: "https://m.me/greenderm",
+        successCount: "8.742",
+        rating: "4.98",
+        reviewCount: "1.243",
+        offerRemaining: "37", // slot còn lại
+        discountPercent: "40",
+        priceFrom: "2.990k",
+      };
+    </script>
+
+    <style>
+      :root {
+        /* ==================== MÀU SẮC CHỦ ĐẠO ==================== */
+        --primary: #10b981; /* xanh lá chính */
+        --primary-dark: #059669;
+        --primary-light: #d1fae5;
+        --accent: #f59e0b; /* nhấn CTA */
+        --accent-dark: #d97706;
+        --bg: #f8fafc;
+        --card-bg: #ffffff;
+        --text: #0f172a;
+        --text-light: #64748b;
+        --border: #e2e8f0;
+        --success: #10b981;
+        --warning: #f59e0b;
+
+        /* ==================== PRESET MẪU (copy-paste thay thế :root) ==================== */
+        /* Preset hồng pastel:
+      --primary:      #ec4899;
+      --primary-dark: #db2777;
+      --primary-light:#fce7f3;
+      --accent:       #a855f7;
+      --accent-dark:  #9333ea;
+      */
+
+        /* Preset tím lavender:
+      --primary:      #8b5cf6;
+      --primary-dark: #7c3aed;
+      --primary-light:#f3e8ff;
+      --accent:       #c084fc;
+      --accent-dark:  #a855f7;
+      */
+
+        /* ==================== KHOẢNG CÁCH & KIỂU ==================== */
+        --font-base: "Inter", system-ui, sans-serif;
+        --font-heading: "Playfair Display", Georgia, serif;
+        --radius: 1.5rem;
+        --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        --transition: all 0.3s ease;
+        --section-pad: 5rem 1rem;
+        --container: 80rem; /* ≈ 1280px */
+      }
+
+      @media (max-width: 767px) {
+        :root {
+          --section-pad: 3.5rem 1rem;
+        }
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-base);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .container {
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .heading-font {
+        font-family: var(--font-heading);
+        font-weight: 700;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: var(--radius);
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: var(--shadow-md);
+      }
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .btn-accent {
+        background: var(--accent);
+        color: white;
+        padding: 1.25rem 2.5rem;
+        border-radius: var(--radius);
+        font-weight: 700;
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition);
+      }
+      .btn-accent:hover {
+        background: var(--accent-dark);
+        transform: translateY(-3px);
+      }
+
+      .card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.75rem;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+      }
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      section {
+        padding: var(--section-pad);
+      }
+      .section-title {
+        font-size: 2.25rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--primary-dark);
+      }
+
+      .sticky-cta {
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        background: var(--primary);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        font-weight: 600;
+        width: 90%;
+        max-width: 420px;
+        text-align: center;
+        display: none;
+      }
+      @media (max-width: 767px) {
+        .sticky-cta {
+          display: block;
+        }
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- ==================== HEADER ==================== -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="container flex justify-between items-center py-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 bg-[var(--primary)] rounded-xl flex items-center justify-center text-white text-2xl font-bold"
+          >
+            🌿
+          </div>
+          <h1
+            class="text-2xl md:text-3xl heading-font text-[var(--primary-dark)]"
+            id="spaNameHeader"
+          >
+            [TÊN SPA]
+          </h1>
+        </div>
+
+        <nav class="hidden md:flex gap-6 font-medium">
+          <a href="#pain" class="hover:text-[var(--primary)] transition"
+            >Vấn đề</a
+          >
+          <a href="#solution" class="hover:text-[var(--primary)] transition"
+            >Giải pháp</a
+          >
+          <a href="#review" class="hover:text-[var(--primary)] transition"
+            >Khách hàng</a
+          >
+          <a href="#process" class="hover:text-[var(--primary)] transition"
+            >Quy trình</a
+          >
+          <a href="#form" class="hover:text-[var(--primary)] transition"
+            >Đăng ký</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-4">
+          <a
+            href="[ZALO_LINK]"
+            target="_blank"
+            class="text-[var(--primary)] text-2xl hover:opacity-80"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+          <a
+            href="[MESSENGER_LINK]"
+            target="_blank"
+            class="text-[var(--primary)] text-2xl hover:opacity-80"
+            ><i class="fab fa-facebook-messenger"></i
+          ></a>
+          <button
+            onclick="scrollTo('#form')"
+            class="btn-primary text-sm md:text-base px-5 md:px-6 py-2.5 md:py-3"
+          >
+            Tư vấn ngay
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section
+      class="bg-gradient-to-br from-[var(--primary)] to-[var(--primary-dark)] text-white"
+    >
+      <div
+        class="container grid md:grid-cols-2 gap-10 items-center py-16 md:py-20"
+      >
+        <div class="space-y-8">
+          <div
+            class="inline-flex items-center gap-3 bg-white/15 backdrop-blur px-5 py-2 rounded-full text-sm font-medium"
+          >
+            <span class="w-3 h-3 bg-white rounded-full animate-pulse"></span>
+            Đã giúp <strong id="successCount">8.742</strong> chị lấy lại làn da
+            tự tin
+          </div>
+
+          <h1
+            class="heading-font text-4xl md:text-5xl lg:text-6xl leading-tight font-bold"
+          >
+            Mụn dai dẳng + Da nhạy cảm?<br />
+            <span class="text-[var(--primary-light)] opacity-90"
+              >Thoát mụn chỉ sau 28 ngày</span
+            >
+          </h1>
+
+          <p class="text-lg md:text-xl max-w-xl opacity-95">
+            Phương pháp thảo dược + công nghệ hiện đại – Không kháng sinh –
+            Không tái phát<br />
+            <strong>MIỄN PHÍ soi da + Voucher 100k</strong> ngay hôm nay
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <button
+              onclick="scrollTo('#form')"
+              class="btn-accent text-lg md:text-xl px-8 md:px-10 py-4 md:py-5"
+            >
+              👉 Đăng ký soi da MIỄN PHÍ ngay
+            </button>
+            <a
+              href="tel:[HOTLINE]"
+              class="border-2 border-white px-7 py-4 rounded-[var(--radius)] flex items-center gap-3 font-medium hover:bg-white/10 transition"
+            >
+              <i class="fas fa-phone"></i> [HOTLINE]
+            </a>
+          </div>
+
+          <div class="flex items-center gap-6 text-sm opacity-90">
+            <div>
+              ⭐⭐⭐⭐⭐ <strong id="rating">4.98</strong> •
+              <span id="reviewCount">1.243</span> đánh giá
+            </div>
+            <div class="flex gap-2">
+              <i class="fas fa-shield-alt"></i> Bảo hành 6 tháng
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <img
+            src="https://picsum.photos/id/201/680/720"
+            class="rounded-3xl shadow-2xl w-full"
+            alt="Before-After"
+            loading="lazy"
+          />
+          <div
+            class="absolute -bottom-8 left-4 bg-white text-[var(--text)] p-4 rounded-2xl shadow-xl text-sm"
+          >
+            <p class="font-bold">Trước → Sau 28 ngày</p>
+            <img
+              src="https://picsum.photos/id/237/280/100"
+              class="mt-2 rounded-xl"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAIN POINTS ==================== -->
+    <section id="pain" class="bg-white">
+      <div class="container text-center">
+        <p class="text-[var(--primary)] font-medium">Bạn có đang gặp phải?</p>
+        <h2 class="section-title">Những nỗi đau mà 99% chị em từng trải qua</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="card text-center">
+            <div class="text-5xl mb-4">🔥</div>
+            <p class="font-semibold">Mụn viêm, mụn nang, mụn đầu đen</p>
+          </div>
+          <div class="card text-center">
+            <div class="text-5xl mb-4">😣</div>
+            <p class="font-semibold">Da đỏ rát, kích ứng mỹ phẩm</p>
+          </div>
+          <div class="card text-center">
+            <div class="text-5xl mb-4">💸</div>
+            <p class="font-semibold">Tốn tiền trị nhiều nơi vẫn tái phát</p>
+          </div>
+          <div class="card text-center">
+            <div class="text-5xl mb-4">😔</div>
+            <p class="font-semibold">Tự ti, ngại chụp ảnh, ngại ra đường</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SOLUTION ==================== -->
+    <section id="solution" class="bg-[var(--primary-light)]">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="section-title">
+            [TÊN SPA] – Giải pháp dành riêng cho da mụn nhạy cảm
+          </h2>
+          <p class="text-lg text-[var(--text-light)] max-w-3xl mx-auto">
+            Kết hợp thảo dược Việt Nam + Công nghệ laser lạnh không đau
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="card relative">
+            <img
+              src="https://picsum.photos/id/201/300/200"
+              class="rounded-2xl w-full"
+              loading="lazy"
+            />
+            <h3 class="font-bold mt-5 text-lg">Liệu trình thảo dược cao cấp</h3>
+            <p class="mt-2 text-[var(--text-light)]">
+              Kem trị mụn từ lá trầu không, nghệ đen, trà xanh hữu cơ
+            </p>
+          </div>
+          <div class="card relative">
+            <img
+              src="https://picsum.photos/id/237/300/200"
+              class="rounded-2xl w-full"
+              loading="lazy"
+            />
+            <h3 class="font-bold mt-5 text-lg">Soi da 3D + Cá nhân hóa</h3>
+            <p class="mt-2 text-[var(--text-light)]">
+              Bác sĩ da liễu 10 năm kinh nghiệm tư vấn trực tiếp
+            </p>
+          </div>
+          <div class="card relative">
+            <div
+              class="absolute top-4 right-4 bg-[var(--warning)] text-white text-xs px-4 py-1 rounded-full font-bold"
+            >
+              BEST SELLER
+            </div>
+            <img
+              src="https://picsum.photos/id/180/300/200"
+              class="rounded-2xl w-full"
+              loading="lazy"
+            />
+            <h3 class="font-bold mt-5 text-lg">
+              Combo 28 ngày “Da sạch mãi mãi”
+            </h3>
+            <p class="text-[var(--primary)] font-semibold mt-2">
+              Chỉ từ <span id="priceFrom">2.990k</span> (giảm
+              <span id="discountPercent">40</span>% hôm nay)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== BENEFITS ==================== -->
+    <section class="bg-white">
+      <div class="container">
+        <h2 class="section-title">Bạn sẽ nhận được gì?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="flex gap-5 items-start">
+            <span class="text-4xl">🌿</span>
+            <div>
+              <p class="font-semibold text-lg">Mụn giảm 90% chỉ sau 4 tuần</p>
+              <p class="text-[var(--text-light)] mt-1">
+                Đã được 2.300+ khách xác nhận
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <span class="text-4xl">🧴</span>
+            <div>
+              <p class="font-semibold text-lg">Da không khô, không bong tróc</p>
+              <p class="text-[var(--text-light)] mt-1">
+                An toàn cho da nhạy cảm nhất
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <span class="text-4xl">🔄</span>
+            <div>
+              <p class="font-semibold text-lg">Không tái phát trong 6 tháng</p>
+              <p class="text-[var(--text-light)] mt-1">Cam kết bằng hợp đồng</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <span class="text-4xl">📸</span>
+            <div>
+              <p class="font-semibold text-lg">
+                Tự tin chụp ảnh • Không cần filter
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <span class="text-4xl">💰</span>
+            <div>
+              <p class="font-semibold text-lg">
+                Tiết kiệm 70% so với spa thông thường
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <span class="text-4xl">❤️</span>
+            <div>
+              <p class="font-semibold text-lg">
+                Nhóm hỗ trợ Zalo 24/7 suốt liệu trình
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SOCIAL PROOF ==================== -->
+    <section id="review" class="bg-[var(--primary-light)]/30">
+      <div class="container">
+        <h2 class="section-title">Khách hàng thật – Kết quả thật</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="card">
+            <div class="flex justify-between items-center mb-4">
+              <div class="text-yellow-500">⭐⭐⭐⭐⭐</div>
+              <img
+                src="https://picsum.photos/id/64/48/48"
+                class="rounded-full w-12 h-12"
+                loading="lazy"
+              />
+            </div>
+            <p>
+              "Mụn cystic hết sạch sau 3 tuần. Da mình giờ trắng hồng luôn ạ!
+              Cảm ơn [TÊN SPA] nhiều lắm 💚"
+            </p>
+            <p class="text-sm mt-4 text-[var(--text-light)]">
+              — Chị Minh Thư, 24t • Quận 7
+            </p>
+            <img
+              src="https://picsum.photos/id/201/300/100"
+              class="mt-4 rounded-xl w-full"
+              loading="lazy"
+            />
+          </div>
+          <div class="card">
+            <p class="font-bold mb-4">Trước & Sau 28 ngày</p>
+            <div class="flex gap-3">
+              <img
+                src="https://picsum.photos/id/180/140/140"
+                class="rounded-xl w-1/2"
+                loading="lazy"
+              />
+              <img
+                src="https://picsum.photos/id/201/140/140"
+                class="rounded-xl w-1/2"
+                loading="lazy"
+              />
+            </div>
+            <div
+              class="flex justify-between text-sm mt-2 text-[var(--text-light)]"
+            >
+              <span>Ngày 1</span
+              ><span class="text-[var(--primary)] font-bold">Ngày 28 ✨</span>
+            </div>
+            <button
+              onclick="alert('Cảm ơn bạn đã xem! Bạn cũng sẽ như vậy 💚')"
+              class="w-full mt-5 bg-[var(--primary)] text-white py-3 rounded-[var(--radius)] font-medium"
+            >
+              Tôi cũng muốn như chị này →
+            </button>
+          </div>
+          <div class="card">
+            <p>
+              "Mình bị dị ứng mỹ phẩm nặng, sau khi dùng liệu trình của [TÊN
+              SPA] da hết đỏ, mụn khô chỉ sau 10 ngày. Bác sĩ siêu tận tình!"
+            </p>
+            <p class="mt-4 text-sm text-[var(--text-light)]">
+              — Chị Ngọc Hà, 29t • Bình Thạnh • 1.2k lượt thích
+            </p>
+          </div>
+        </div>
+        <p class="text-center mt-10 text-[var(--primary)] font-medium">
+          + <span id="reviewCountFooter">1.243</span> đánh giá 5 sao khác trên
+          Google & Facebook
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== PROCESS ==================== -->
+    <section id="process" class="bg-white">
+      <div class="container text-center">
+        <h2 class="section-title">Quy trình 5 bước đơn giản</h2>
+        <div class="mt-12 grid md:grid-cols-5 gap-6 items-start">
+          <div>
+            <div
+              class="w-14 h-14 mx-auto bg-[var(--primary-light)] rounded-full flex items-center justify-center text-2xl font-bold text-[var(--primary)]"
+            >
+              1
+            </div>
+            <p class="font-medium mt-4">Đăng ký soi da online</p>
+          </div>
+          <div
+            class="hidden md:block text-5xl text-[var(--primary)] opacity-40"
+          >
+            →
+          </div>
+          <div>
+            <div
+              class="w-14 h-14 mx-auto bg-[var(--primary-light)] rounded-full flex items-center justify-center text-2xl font-bold text-[var(--primary)]"
+            >
+              2
+            </div>
+            <p class="font-medium mt-4">Bác sĩ gọi video soi da</p>
+          </div>
+          <div
+            class="hidden md:block text-5xl text-[var(--primary)] opacity-40"
+          >
+            →
+          </div>
+          <div>
+            <div
+              class="w-14 h-14 mx-auto bg-[var(--primary-light)] rounded-full flex items-center justify-center text-2xl font-bold text-[var(--primary)]"
+            >
+              3
+            </div>
+            <p class="font-medium mt-4">Nhận phác đồ + sản phẩm</p>
+          </div>
+          <div
+            class="hidden md:block text-5xl text-[var(--primary)] opacity-40"
+          >
+            →
+          </div>
+          <div>
+            <div
+              class="w-14 h-14 mx-auto bg-[var(--primary-light)] rounded-full flex items-center justify-center text-2xl font-bold text-[var(--primary)]"
+            >
+              4
+            </div>
+            <p class="font-medium mt-4">Theo dõi hàng tuần qua Zalo</p>
+          </div>
+          <div
+            class="hidden md:block text-5xl text-[var(--primary)] opacity-40"
+          >
+            →
+          </div>
+          <div>
+            <div
+              class="w-14 h-14 mx-auto bg-[var(--primary)] text-white rounded-full flex items-center justify-center text-2xl font-bold"
+            >
+              5
+            </div>
+            <p class="font-medium mt-4">Da sạch – Tự tin – Nhận quà</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== OFFER ==================== -->
+    <section
+      class="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] text-white text-center py-16"
+    >
+      <div class="container max-w-3xl">
+        <p
+          class="uppercase tracking-wider text-[var(--primary-light)] opacity-80"
+        >
+          Ưu đãi chỉ hôm nay • Hết ngày [ngày hết hạn]
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">
+          Tư vấn soi da + Voucher 100k • Hoàn toàn MIỄN PHÍ
+        </h2>
+        <button
+          onclick="scrollTo('#form')"
+          class="mt-8 btn-accent text-xl md:text-2xl px-10 md:px-12 py-5 md:py-6"
+        >
+          Nhận ngay ưu đãi 🔥 (Còn <span id="offerRemaining">37</span> suất)
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== FORM ==================== -->
+    <section id="form" class="bg-[var(--text)] text-white">
+      <div class="container max-w-3xl">
+        <div
+          class="bg-white text-[var(--text)] rounded-3xl p-8 md:p-12 shadow-2xl"
+        >
+          <h2 class="text-3xl font-bold text-center">
+            Đăng ký soi da miễn phí + nhận voucher 100k
+          </h2>
+          <p class="text-center text-[var(--text-light)] mt-3">
+            Chỉ mất 30 giây • Bác sĩ gọi lại trong 5 phút
+          </p>
+
+          <form
+            id="leadForm"
+            class="mt-10 space-y-6"
+            onsubmit="handleSubmit(event)"
+          >
+            <input
+              type="text"
+              id="name"
+              placeholder="Họ và tên *"
+              class="w-full border rounded-[var(--radius)] px-6 py-4 focus:outline-none focus:border-[var(--primary)]"
+              required
+            />
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Số điện thoại *"
+                class="w-full border rounded-[var(--radius)] px-6 py-4 focus:outline-none focus:border-[var(--primary)]"
+                required
+              />
+              <input
+                type="email"
+                id="email"
+                placeholder="Email (không bắt buộc)"
+                class="w-full border rounded-[var(--radius)] px-6 py-4 focus:outline-none focus:border-[var(--primary)]"
+              />
+            </div>
+            <textarea
+              id="problem"
+              rows="4"
+              placeholder="Mô tả tình trạng da của bạn (ví dụ: mụn viêm 2 năm, da dầu...)"
+              class="w-full border rounded-[var(--radius)] px-6 py-4 focus:outline-none focus:border-[var(--primary)]"
+            ></textarea>
+            <button
+              type="submit"
+              class="w-full btn-primary py-5 text-lg font-bold"
+            >
+              🚀 GỬI ĐĂNG KÝ – NHẬN VOUCHER NGAY
+            </button>
+          </form>
+
+          <div
+            class="flex flex-wrap justify-center gap-8 mt-8 text-sm text-[var(--text-light)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fas fa-lock"></i> Bảo mật tuyệt đối
+            </div>
+            <div>📍 Nhiều chi nhánh TP.HCM & Hà Nội</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="bg-white">
+      <div class="container max-w-4xl">
+        <h2 class="section-title">Câu hỏi thường gặp</h2>
+        <div class="space-y-4">
+          <div class="border rounded-[var(--radius)] overflow-hidden">
+            <button
+              class="w-full px-6 py-5 text-left font-medium flex justify-between items-center hover:bg-[var(--primary-light)]/30 transition"
+              onclick="
+                this.nextElementSibling.style.maxHeight = this
+                  .nextElementSibling.style.maxHeight
+                  ? null
+                  : this.nextElementSibling.scrollHeight + 'px'
+              "
+            >
+              Liệu trình có đau không?
+              <span class="text-[var(--primary)] text-xl">↓</span>
+            </button>
+            <div
+              class="max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-[var(--text-light)]"
+            >
+              Hoàn toàn không đau. Chúng tôi dùng laser lạnh + thảo dược nên rất
+              dịu nhẹ.
+            </div>
+          </div>
+          <div class="border rounded-[var(--radius)] overflow-hidden">
+            <button
+              class="w-full px-6 py-5 text-left font-medium flex justify-between items-center hover:bg-[var(--primary-light)]/30 transition"
+              onclick="
+                this.nextElementSibling.style.maxHeight = this
+                  .nextElementSibling.style.maxHeight
+                  ? null
+                  : this.nextElementSibling.scrollHeight + 'px'
+              "
+            >
+              Chi phí bao nhiêu?
+              <span class="text-[var(--primary)] text-xl">↓</span>
+            </button>
+            <div
+              class="max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-[var(--text-light)]"
+            >
+              Chỉ từ <span id="priceFromFAQ">2.990k</span> cho combo 28 ngày (đã
+              giảm <span id="discountPercentFAQ">40</span>% cho khách đăng ký
+              sớm).
+            </div>
+          </div>
+          <div class="border rounded-[var(--radius)] overflow-hidden">
+            <button
+              class="w-full px-6 py-5 text-left font-medium flex justify-between items-center hover:bg-[var(--primary-light)]/30 transition"
+              onclick="
+                this.nextElementSibling.style.maxHeight = this
+                  .nextElementSibling.style.maxHeight
+                  ? null
+                  : this.nextElementSibling.scrollHeight + 'px'
+              "
+            >
+              Có cam kết hiệu quả không?
+              <span class="text-[var(--primary)] text-xl">↓</span>
+            </button>
+            <div
+              class="max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-[var(--text-light)]"
+            >
+              Có! Hoàn tiền 100% nếu mụn không giảm ≥80% sau 28 ngày.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-[var(--text)] text-white py-16">
+      <div class="container grid md:grid-cols-3 gap-12">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="text-4xl">🌿</span>
+            <span class="text-3xl heading-font" id="spaNameFooter"
+              >[TÊN SPA]</span
+            >
+          </div>
+          <p class="mt-4 text-[var(--primary-light)] opacity-90">
+            Trị mụn thảo dược • Da nhạy cảm • Uy tín từ 2019
+          </p>
+          <div class="mt-6 flex gap-6 text-3xl">
+            <a href="[ZALO_LINK]" target="_blank">💬</a>
+            <a href="[MESSENGER_LINK]" target="_blank">📘</a>
+          </div>
+          <p class="mt-8">
+            Hotline:
+            <a
+              href="tel:[HOTLINE]"
+              class="underline hover:text-[var(--primary)]"
+              >[HOTLINE]</a
+            >
+          </p>
+        </div>
+        <div class="text-sm space-y-3">
+          <p>📍 [Địa chỉ chi nhánh 1]</p>
+          <p>© 2026 [TÊN SPA]. All rights reserved.</p>
+          <p class="text-[var(--primary)]">
+            Mã giảm giá hôm nay: <strong>FREESKIN100</strong>
+          </p>
+        </div>
+        <div>
+          <button
+            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+            class="w-full bg-zinc-800 hover:bg-[var(--primary)] px-6 py-4 rounded-[var(--radius)] transition"
+          >
+            ↑ Về đầu trang
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- STICKY CTA MOBILE -->
+    <div class="sticky-cta">
+      <button onclick="scrollTo('#form')">
+        Nhận voucher 100k + soi da miễn phí ngay 🔥
+      </button>
+    </div>
+
+    <script>
+      // ==================== THAY TEXT ĐỘNG TỪ CONFIG ====================
+      const cfg = window.CONFIG;
+      document
+        .querySelectorAll("#spaName, #spaNameHeader, #spaNameFooter")
+        .forEach((el) => (el.textContent = cfg.spaName));
+      document.getElementById("successCount").textContent = cfg.successCount;
+      document.getElementById("rating").textContent = cfg.rating;
+      document.getElementById("reviewCount").textContent = cfg.reviewCount;
+      document.getElementById("reviewCountFooter").textContent =
+        cfg.reviewCount;
+      document.getElementById("offerRemaining").textContent =
+        cfg.offerRemaining;
+      document.getElementById("priceFrom").textContent = cfg.priceFrom;
+      document.getElementById("priceFromFAQ").textContent = cfg.priceFrom;
+      document.getElementById("discountPercent").textContent =
+        cfg.discountPercent;
+      document.getElementById("discountPercentFAQ").textContent =
+        cfg.discountPercent;
+
+      // Thay link & hotline
+      document
+        .querySelectorAll('a[href*="zalo.me"], a[href*="https://zalo.me"]')
+        .forEach((a) => (a.href = cfg.zaloLink));
+      document
+        .querySelectorAll('a[href*="m.me"]')
+        .forEach((a) => (a.href = cfg.messengerLink));
+      document.querySelectorAll('a[href^="tel:"]').forEach((a) => {
+        a.href = `tel:${cfg.hotline.replace(/\s/g, "")}`;
+        if (a.textContent.includes("098") || a.textContent.includes("Hotline"))
+          a.textContent = cfg.hotline;
+      });
+
+      function scrollTo(selector) {
+        document
+          .querySelector(selector)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById("name")?.value.trim() || "bạn";
+        alert(
+          `✅ Đăng ký thành công!\nVoucher 100k đã gửi qua Zalo cho ${name}.\nBác sĩ gọi lại trong 3-5 phút.\nCảm ơn bạn đã tin tưởng ${cfg.spaName} 💚`,
+        );
+        e.target.reset();
+      }
+
+      console.log(
+        "%c✅ Template reusable đã sẵn sàng! Chỉnh sửa ở window.CONFIG hoặc :root là xong.",
+        "color:#10b981; font-size:16px; font-weight:bold",
+      );
+    </script>
+  </body>
+</html>
