@@ -53,12 +53,17 @@
         overflow: hidden;
         transition: max-height 0.3s ease;
       }
+      @keyframes slideUp {
+        from { transform: translateY(60px); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+      }
+      .popup-slide-up { animation: slideUp 0.35s ease; }
     </style>
   </head>
   <!-- // TODO: Thay tên thương hiệu, số điện thoại, link Zalo/Mess, ảnh thật của bạn
   vào data.js -->
 
-  <body class="bg-zinc-50 text-zinc-800" x-data="CLIENT">
+  <body class="bg-zinc-50 text-zinc-800 pb-24 md:pb-0" x-data="CLIENT">
     <!-- HEADER -->
     <header class="bg-white shadow-sm sticky top-0 z-40">
       <div
@@ -127,19 +132,17 @@
             <span x-text="hero.subtext"></span><br />
             <strong x-text="hero.subCta"></strong>
           </p>
-          <div class="flex flex-wrap gap-4">
+          <div class="flex flex-col sm:flex-row gap-3">
             <button
               onclick="scrollToForm()"
-              class="bg-white text-emerald-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:scale-105 transition flex-1 md:flex-none"
+              class="bg-white text-emerald-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:scale-105 transition w-full sm:w-auto text-center"
               x-text="hero.ctaBtn"
             ></button>
             <a
               x-bind:href="'tel:' + phone"
-              class="border-2 border-white px-6 py-4 rounded-2xl flex items-center gap-2 font-medium"
-              x-text="'Gọi ngay ' + hotline"
-            >
-              📞
-            </a>
+              class="border-2 border-white px-6 py-4 rounded-2xl flex items-center justify-center gap-2 font-medium"
+              x-text="'📞 Gọi ngay ' + hotline"
+            ></a>
           </div>
           <div class="flex items-center gap-6 text-sm">
             <div class="flex -space-x-3">
@@ -217,6 +220,12 @@
             </div>
           </template>
         </div>
+        <div class="mt-10 text-center">
+          <button
+            onclick="scrollToForm()"
+            class="bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:bg-emerald-700 transition w-full sm:w-auto"
+          >Tôi muốn thoát mụn — Tư vấn MIỄN PHÍ 👇</button>
+        </div>
       </div>
     </section>
 
@@ -265,6 +274,22 @@
               </div>
             </div>
           </template>
+        </div>
+        <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+          <button
+            onclick="scrollToForm()"
+            class="bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:bg-emerald-700 transition"
+          >🚀 Đặt lịch tư vấn MIỄN PHÍ</button>
+          <a
+            x-bind:href="zalo"
+            target="_blank"
+            class="border-2 border-emerald-600 text-emerald-700 px-6 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-emerald-50 transition"
+          ><i class="fab fa-line text-xl"></i> Nhắn Zalo</a>
+          <a
+            x-bind:href="messenger"
+            target="_blank"
+            class="bg-blue-600 text-white px-6 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-blue-700 transition"
+          ><i class="fab fa-facebook-messenger text-xl"></i> Messenger</a>
         </div>
       </div>
     </section>
@@ -415,7 +440,7 @@
                 required
               />
             </div>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 type="tel"
                 id="phone"
@@ -427,6 +452,7 @@
                 type="email"
                 id="email"
                 :placeholder="form.placeholderEmail"
+                class="w-full border rounded-2xl px-5 py-3 focus:outline-none focus:border-emerald-500"
               />
             </div>
             <textarea
@@ -515,19 +541,54 @@
       </div>
     </footer>
 
-    <!-- FLOATING STICKY CTA (mobile) -->
-    <div
-      class="md:hidden sticky-cta bg-emerald-600 text-white shadow-2xl rounded-3xl flex items-center justify-between px-4 py-3 w-[92%]"
-    >
-      <div class="flex-1 text-center">
-        <button onclick="scrollToForm()" class="font-bold" x-text="stickyCta"></button>
+    <!-- POPUP CTA (hiện sau 10s) -->
+    <div id="popup-overlay" class="hidden fixed inset-0 bg-black/60 z-50 flex items-end sm:items-center justify-center" onclick="closePopupOutside(event)">
+      <div id="popup-card" class="bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl popup-slide-up">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <p class="text-emerald-600 text-sm font-medium">Ưu đãi hôm nay 🎁</p>
+            <h3 class="text-xl font-bold text-zinc-800 mt-1" x-text="form.heading"></h3>
+            <p class="text-sm text-zinc-500 mt-1" x-text="form.subtitle"></p>
+          </div>
+          <button onclick="closePopup()" class="text-zinc-400 hover:text-zinc-600 text-3xl leading-none ml-4 flex-shrink-0">&times;</button>
+        </div>
+        <form onsubmit="handlePopupSubmit(event)" class="space-y-3">
+          <input type="text" id="popup-name" :placeholder="form.placeholderName"
+            class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500" required />
+          <input type="tel" id="popup-phone" :placeholder="form.placeholderPhone"
+            class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500" required />
+          <button type="submit"
+            class="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold text-base hover:bg-emerald-700 transition"
+          >🚀 Đặt lịch tư vấn ngay</button>
+        </form>
+        <div class="flex items-center gap-3 my-4">
+          <div class="flex-1 h-px bg-zinc-200"></div>
+          <span class="text-xs text-zinc-400">hoặc liên hệ trực tiếp</span>
+          <div class="flex-1 h-px bg-zinc-200"></div>
+        </div>
+        <a x-bind:href="messenger" target="_blank" onclick="closePopup()"
+          class="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-4 rounded-xl font-bold text-base hover:bg-blue-700 transition"
+        ><i class="fab fa-facebook-messenger text-xl"></i> Nhắn tin Messenger ngay</a>
       </div>
+    </div>
+
+    <!-- FLOATING STICKY CTA (mobile) -->
+    <div class="md:hidden sticky-cta w-[96%] flex gap-2">
       <button
-        onclick="window.location.href = 'tel:' + window.CLIENT.phone"
-        class="bg-white text-emerald-600 w-10 h-10 rounded-2xl flex items-center justify-center"
-      >
-        📞
-      </button>
+        onclick="scrollToForm()"
+        class="flex-1 bg-emerald-600 text-white font-bold text-sm py-4 rounded-2xl shadow-2xl"
+        x-text="stickyCta"
+      ></button>
+      <a
+        x-bind:href="zalo"
+        target="_blank"
+        class="bg-white border-2 border-emerald-600 text-emerald-600 w-14 rounded-2xl flex items-center justify-center shadow-2xl"
+      ><i class="fab fa-brands fa-line text-2xl"></i></a>
+      <a
+        x-bind:href="messenger"
+        target="_blank"
+        class="bg-blue-600 text-white w-14 rounded-2xl flex items-center justify-center shadow-2xl"
+      ><i class="fab fa-facebook-messenger text-2xl"></i></a>
     </div>
 
     <script>
@@ -607,6 +668,51 @@
         .addEventListener("keypress", function (e) {
           if (e.key === "Enter") handleSubmit(e);
         });
+
+      function closePopup() {
+        document.getElementById("popup-overlay").classList.add("hidden");
+        sessionStorage.setItem("popupClosed", "1");
+      }
+
+      function closePopupOutside(e) {
+        if (e.target === document.getElementById("popup-overlay")) closePopup();
+      }
+
+      function handlePopupSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById("popup-name").value.trim();
+        const phone = document.getElementById("popup-phone").value.trim();
+        if (name.length < 3) { alert(CLIENT.alerts.nameError); return; }
+        if (phone.length < 9) { alert(CLIENT.alerts.phoneError); return; }
+        const btn = e.target.querySelector("[type=submit]");
+        const orig = btn.textContent;
+        btn.textContent = "Đang gửi...";
+        btn.disabled = true;
+        const payload = new URLSearchParams({
+          name, phone,
+          source: window.location.href,
+          timestamp: new Date().toLocaleString("vi-VN"),
+          sheetId: CLIENT.sheetId || "",
+        });
+        const finish = () => {
+          btn.textContent = orig;
+          btn.disabled = false;
+          closePopup();
+          alert(CLIENT.alerts.successMsg);
+        };
+        if (CLIENT_CONFIG.scriptUrl && CLIENT.sheetId) {
+          fetch(CLIENT_CONFIG.scriptUrl, { method: "POST", mode: "no-cors", body: payload })
+            .then(finish).catch(finish);
+        } else {
+          finish();
+        }
+      }
+
+      if (!sessionStorage.getItem("popupClosed")) {
+        setTimeout(() => {
+          document.getElementById("popup-overlay").classList.remove("hidden");
+        }, 2000); // test: 2s — đổi lại 10000 khi xong
+      }
     </script>
   </body>
 </html>
