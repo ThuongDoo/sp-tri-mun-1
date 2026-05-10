@@ -110,7 +110,7 @@ const THEMES = {
 
 const CLIENTS_DATA = {
   greenderm: {
-    theme: "violet", // emerald | rose | violet | sky | amber | fuchsia | teal
+    theme: "teal", // emerald | rose | violet | sky | amber | fuchsia | teal
 
     brand: "GreenDerm",
     hotline: "0987 654 321",
