@@ -1,5 +1,17 @@
+// ═══════════════════════════════════════════════════════════════════════════════
+// ⚙️  CẤU HÌNH NHANH — Chỉnh sửa ở đây, không cần đụng code bên dưới
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const CLIENT_CONFIG = {
+  scriptUrl:
+    "https://script.google.com/macros/s/AKfycbxPg0ns72ylVn8aaiy8Qb7JFpBJzVyOxT0lw2Vp13uyyV7iejB0gJeLb82dETfMdINL/exec", // ← Apps Script URL (deploy 1 lần, dùng chung)
+  clientKey: "greenderm", // ← đổi key để chuyển client
+  sheetId: "16V4WklPE_rx7f9KgUh4I8EEDGvsEBtJgqpmSjvlCy4I", // ← ID Google Sheet của client
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+
 // ─── THEMES ──────────────────────────────────────────────────────────────────
-// Mỗi client chỉ cần ghi: theme: "tên_màu"
 // Các tên có sẵn: "emerald" | "rose" | "violet" | "sky" | "amber" | "fuchsia" | "teal"
 // ─────────────────────────────────────────────────────────────────────────────
 const THEMES = {
@@ -98,6 +110,8 @@ const THEMES = {
 
 const CLIENTS_DATA = {
   greenderm: {
+    theme: "violet", // emerald | rose | violet | sky | amber | fuchsia | teal
+
     brand: "GreenDerm",
     hotline: "0987 654 321",
     phone: "0987654321",
@@ -105,30 +119,6 @@ const CLIENTS_DATA = {
     reviews: "1.243",
     zalo: "https://zalo.me/0987654321",
     messenger: "https://m.me/greenderm",
-
-    // ── GOOGLE SHEETS ──────────────────────────────────────────────────────
-    // Bước 1: Mở Google Sheet → Extensions → Apps Script → paste code sau:
-    //
-    //   function doPost(e) {
-    //     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    //     sheet.appendRow([
-    //       new Date().toLocaleString("vi-VN"),  // Thời gian
-    //       e.parameter.name    || "",            // Họ tên
-    //       e.parameter.phone   || "",            // Số điện thoại
-    //       e.parameter.email   || "",            // Email
-    //       e.parameter.problem || "",            // Tình trạng da
-    //       e.parameter.source  || "",            // Trang gửi
-    //     ]);
-    //     return ContentService
-    //       .createTextOutput(JSON.stringify({ result: "success" }))
-    //       .setMimeType(ContentService.MimeType.JSON);
-    //   }
-    //
-    // Bước 2: Deploy → New deployment → Web app
-    //         Execute as: Me | Who has access: Anyone → Deploy
-    // Bước 3: Copy URL dán vào đây
-    sheetUrl: "",  // ← paste URL Google Apps Script vào đây
-    // ────────────────────────────────────────────────────────────────────────
 
     pageTitle:
       "GreenDerm • Thoát Mụn – Da Khỏe • Tư Vấn Miễn Phí + Voucher 100k",
@@ -332,233 +322,11 @@ const CLIENTS_DATA = {
       successMsg:
         "✅ Đăng ký thành công!\nBác sĩ sẽ gọi cho bạn trong 3-5 phút.\nVoucher 100k đã gửi qua Zalo.\nCảm ơn chị đã tin tưởng GreenDerm ❤️",
     },
-
-    // Đổi tên theme để thay toàn bộ màu giao diện
-    // Các lựa chọn: "emerald" | "rose" | "violet" | "sky" | "amber" | "fuchsia" | "teal"
-    theme: "violet",
-  },
-
-  sampleSpa: {
-    brand: "AuraSkin",
-    hotline: "0912 345 678",
-    phone: "0912345678",
-    address: "456 Lê Văn Sỹ, Phường 14, Q.3, TP.HCM",
-    reviews: "987",
-    zalo: "https://zalo.me/0912345678",
-    messenger: "https://m.me/auraskin",
-    sheetUrl: "",  // ← paste URL Google Apps Script vào đây
-
-    pageTitle:
-      "AuraSkin • Thoát Mụn – Da Khỏe • Tư Vấn Miễn Phí + Voucher 100k",
-
-    nav: {
-      links: [
-        { label: "Vấn đề", href: "#pain" },
-        { label: "Giải pháp", href: "#solution" },
-        { label: "Khách hàng", href: "#review" },
-        { label: "Quy trình", href: "#process" },
-        { label: "Đăng ký", href: "#form" },
-      ],
-      cta: "Tư vấn ngay",
-    },
-
-    hero: {
-      badge: "Đã giúp 8.742 chị lấy lại làn da tự tin",
-      headline1: "Mụn dai dẳng + Da nhạy cảm?",
-      headline2: "Thoát mụn chỉ sau 28 ngày",
-      subtext:
-        "Phương pháp thảo dược cao cấp – Không kháng sinh – Không tái phát",
-      subCta: "MIỄN PHÍ soi da + Voucher 100k hôm nay",
-      ctaBtn: "👉 Đăng ký soi da MIỄN PHÍ ngay",
-      rating: "4.97/5",
-      ratingLabel: "đánh giá thật",
-      beforeAfterLabel: "Trước → Sau 28 ngày",
-      testimonialName: "Chị Lan, 26t",
-      testimonialResult: "Mụn hết 95% • Da không còn đỏ",
-      trustItems: [
-        { icon: "fa-shield-alt", text: "Bảo hành 6 tháng" },
-        { icon: "fa-medal", text: "Chứng chỉ Bộ Y tế" },
-      ],
-    },
-
-    trustBar: [
-      "🏆 Top 1 trị mụn thảo dược 2025",
-      "🔒 Bảo mật thông tin 100%",
-      "🚀 Hơn 8700 khách đã thành công",
-    ],
-
-    pain: {
-      label: "Bạn có đang gặp phải?",
-      heading: "Những nỗi đau mà 99% chị em từng trải qua",
-      items: [
-        { emoji: "🔥", text: "Mụn viêm, mụn nang, mụn đầu đen" },
-        { emoji: "😣", text: "Da đỏ rát, kích ứng mỹ phẩm" },
-        { emoji: "💸", text: "Tốn tiền trị nhiều nơi vẫn tái phát" },
-        { emoji: "😔", text: "Tự ti, ngại chụp ảnh, ngại ra đường" },
-      ],
-    },
-
-    solution: {
-      headingSuffix: "– Giải pháp dành riêng cho da mụn nhạy cảm",
-      subtitle: "Kết hợp thảo dược Việt Nam + Công nghệ laser lạnh không đau",
-      cards: [
-        {
-          title: "Liệu trình thảo dược cao cấp",
-          desc: "Kem trị mụn từ lá trầu không, nghệ đen, trà xanh hữu cơ",
-          badge: null,
-          price: null,
-          imgId: "201",
-        },
-        {
-          title: "Soi da 3D + Cá nhân hóa",
-          desc: "Bác sĩ da liễu 10 năm kinh nghiệm tư vấn trực tiếp",
-          badge: null,
-          price: null,
-          imgId: "237",
-        },
-        {
-          title: 'Combo 28 ngày "Da sạch mãi mãi"',
-          desc: null,
-          badge: "BEST SELLER",
-          price: "Chỉ từ 2.990k (giảm 40% hôm nay)",
-          imgId: "180",
-        },
-      ],
-    },
-
-    benefits: {
-      heading: "Bạn sẽ nhận được gì?",
-      items: [
-        {
-          emoji: "🌿",
-          title: "Mụn giảm 90% chỉ sau 4 tuần",
-          sub: "Đã được 2.300+ khách xác nhận",
-        },
-        {
-          emoji: "🧴",
-          title: "Da không khô, không bong tróc",
-          sub: "An toàn cho da nhạy cảm nhất",
-        },
-        {
-          emoji: "🔄",
-          title: "Không tái phát trong 6 tháng",
-          sub: "Cam kết bằng hợp đồng",
-        },
-        { emoji: "📸", title: "Tự tin chụp ảnh • Không cần filter", sub: "" },
-        {
-          emoji: "💰",
-          title: "Tiết kiệm 70% so với spa thông thường",
-          sub: "",
-        },
-        {
-          emoji: "❤️",
-          title: "Nhóm hỗ trợ Zalo 24/7 suốt liệu trình",
-          sub: "",
-        },
-      ],
-    },
-
-    reviewsSection: {
-      heading: "Khách hàng thật – Kết quả thật",
-      morePrefix: "Và còn ",
-      moreSuffix: " đánh giá 5 sao khác trên Google & Facebook",
-      items: [
-        {
-          quote:
-            "Mụn cystic hết sạch sau 3 tuần. Da mình giờ trắng hồng luôn ạ! Cảm ơn AuraSkin nhiều lắm 💚",
-          author: "Chị Minh Thư, 24t • Quận 7",
-          imgId: "64",
-          afterImgId: "201",
-        },
-        {
-          quote:
-            "Mình bị dị ứng mỹ phẩm nặng, sau khi dùng liệu trình của AuraSkin da hết đỏ, mụn khô chỉ sau 10 ngày. Bác sĩ siêu tận tình!",
-          author: "Chị Ngọc Hà, 29t • Bình Thạnh • 1.2k lượt thích",
-          imgId: null,
-          afterImgId: null,
-        },
-      ],
-      beforeAfterLabel: "Trước & Sau 28 ngày",
-      beforeAfterDay1: "Ngày 1",
-      beforeAfterDay28: "Ngày 28 ✨",
-      beforeAfterBtn: "Tôi cũng muốn như chị này →",
-      beforeAfterMsg: "Cảm ơn bạn đã xem! Bạn cũng sẽ như vậy 💚",
-    },
-
-    process: {
-      heading: "Quy trình 5 bước đơn giản",
-      steps: [
-        "Đăng ký soi da online",
-        "Bác sĩ gọi video soi da",
-        "Nhận phác đồ + sản phẩm",
-        "Theo dõi hàng tuần qua Zalo",
-        "Da sạch – Tự tin – Nhận quà",
-      ],
-    },
-
-    offer: {
-      label: "Ưu đãi chỉ hôm nay • Hết ngày 25/03",
-      heading: "Tư vấn soi da + Voucher 100k • Hoàn toàn MIỄN PHÍ",
-      cta: "Nhận ngay ưu đãi 🔥 (Còn 37 suất)",
-    },
-
-    form: {
-      heading: "Đăng ký soi da miễn phí + nhận voucher 100k",
-      subtitle: "Chỉ mất 30 giây • Bác sĩ gọi lại trong 5 phút",
-      placeholderName: "Họ và tên *",
-      placeholderPhone: "Số điện thoại *",
-      placeholderEmail: "Email (không bắt buộc)",
-      placeholderProblem:
-        "Mô tả tình trạng da của bạn (ví dụ: mụn viêm 2 năm, da dầu...)",
-      submitBtn: "🚀 GỬI ĐĂNG KÝ – NHẬN VOUCHER NGAY",
-      privacyNote: "Bảo mật tuyệt đối",
-      branches: "12 chi nhánh TP.HCM & Hà Nội",
-    },
-
-    faq: {
-      heading: "Câu hỏi thường gặp",
-      items: [
-        {
-          q: "Liệu trình có đau không?",
-          a: "Hoàn toàn không đau. Chúng tôi dùng laser lạnh + thảo dược nên rất dịu nhẹ.",
-        },
-        {
-          q: "Chi phí bao nhiêu?",
-          a: "Chỉ từ 2.990k cho combo 28 ngày (đã giảm 40% cho 50 người đầu tiên).",
-        },
-        {
-          q: "Có cam kết hiệu quả không?",
-          a: "Có! Hoàn tiền 100% nếu mụn không giảm ≥80% sau 28 ngày.",
-        },
-      ],
-    },
-
-    footer: {
-      tagline: "Trị mụn thảo dược • Da nhạy cảm • Uy tín từ 2019",
-      discountLabel: "Mã giảm giá hôm nay:",
-      discountCode: "FREESKIN100",
-      scrollTopBtn: "↑ Về đầu trang",
-      copyright: "All rights reserved.",
-      footerNote: "Code được tạo hoàn chỉnh theo yêu cầu • Chỉnh sửa thoải mái",
-    },
-
-    stickyCta: "Nhận voucher 100k + soi da miễn phí",
-
-    alerts: {
-      nameError: "Vui lòng nhập họ tên đầy đủ 💚",
-      phoneError: "Số điện thoại chưa đúng 💚",
-      successMsg:
-        "✅ Đăng ký thành công!\nBác sĩ sẽ gọi cho bạn trong 3-5 phút.\nVoucher 100k đã gửi qua Zalo.\nCảm ơn chị đã tin tưởng AuraSkin ❤️",
-    },
-
-    // Đổi tên theme để thay toàn bộ màu giao diện
-    // Các lựa chọn: "emerald" | "rose" | "violet" | "sky" | "amber" | "fuchsia" | "teal"
-    theme: "fuchsia",
   },
 };
 
-const CLIENT_KEY = "greenderm"; // Đổi key này để chuyển client
-const CLIENT = CLIENTS_DATA[CLIENT_KEY];
+const CLIENT_KEY = CLIENT_CONFIG.clientKey;
+const CLIENT = { ...CLIENTS_DATA[CLIENT_KEY], sheetId: CLIENT_CONFIG.sheetId };
 
 document.title = CLIENT.pageTitle;
 

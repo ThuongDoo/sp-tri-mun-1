@@ -555,6 +555,7 @@
           problem: document.getElementById("problem").value.trim(),
           source:  window.location.href,
           timestamp: new Date().toLocaleString("vi-VN"),
+          sheetId: CLIENT.sheetId || "",
         });
 
         const finish = () => {
@@ -564,8 +565,8 @@
           e.target.reset();
         };
 
-        if (CLIENT.sheetUrl) {
-          fetch(CLIENT.sheetUrl, { method: "POST", mode: "no-cors", body: payload })
+        if (CLIENT_CONFIG.scriptUrl && CLIENT.sheetId) {
+          fetch(CLIENT_CONFIG.scriptUrl, { method: "POST", mode: "no-cors", body: payload })
             .then(finish)
             .catch(finish);
         } else {
