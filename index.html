@@ -63,7 +63,7 @@
   <!-- // TODO: Thay tên thương hiệu, số điện thoại, link Zalo/Mess, ảnh thật của bạn
   vào data.js -->
 
-  <body class="bg-zinc-50 text-zinc-800 pb-24 md:pb-0" x-data="CLIENT">
+  <body class="bg-zinc-50 text-zinc-800 pb-24 md:pb-0" x-data="clientApp()">
     <!-- HEADER -->
     <header class="bg-white shadow-sm sticky top-0 z-40">
       <div
@@ -140,9 +140,17 @@
             ></button>
             <a
               x-bind:href="'tel:' + phone"
-              class="border-2 border-white px-6 py-4 rounded-2xl flex items-center justify-center gap-2 font-medium"
-              x-text="'📞 Gọi ngay ' + hotline"
-            ></a>
+              class="bg-white/20 hover:bg-white/30 border-2 border-white px-6 py-4 rounded-2xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg hover:scale-105 transition w-full sm:w-auto"
+            >
+              <span class="relative flex h-5 w-5 shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
+                <i class="fas fa-phone relative text-base"></i>
+              </span>
+              <span class="flex flex-col items-start leading-tight">
+                <span class="text-sm font-medium opacity-90">Gọi ngay</span>
+                <span class="font-bold tracking-wide text-base" x-text="hotline"></span>
+              </span>
+            </a>
           </div>
           <div class="flex items-center gap-6 text-sm">
             <div class="flex -space-x-3">
@@ -669,9 +677,11 @@
           if (e.key === "Enter") handleSubmit(e);
         });
 
+      let _popupClosed = false;
+
       function closePopup() {
         document.getElementById("popup-overlay").classList.add("hidden");
-        sessionStorage.setItem("popupClosed", "1");
+        _popupClosed = true;
       }
 
       function closePopupOutside(e) {
@@ -708,11 +718,14 @@
         }
       }
 
-      if (!sessionStorage.getItem("popupClosed")) {
+      window.addEventListener("scroll", function onFirstScroll() {
+        window.removeEventListener("scroll", onFirstScroll);
         setTimeout(() => {
-          document.getElementById("popup-overlay").classList.remove("hidden");
-        }, 2000); // test: 2s — đổi lại 10000 khi xong
-      }
+          if (!_popupClosed) {
+            document.getElementById("popup-overlay").classList.remove("hidden");
+          }
+        }, 5000);
+      }, { passive: true });
     </script>
   </body>
 </html>
