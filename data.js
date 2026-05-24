@@ -152,8 +152,8 @@ const CLIENTS_DATA = {
         quote:
           "Mình bị dị ứng mỹ phẩm nặng, sau khi dùng liệu trình của GreenDerm da hết đỏ, mụn khô chỉ sau 10 ngày. Bác sĩ siêu tận tình!",
         author: "Chị Ngọc Hà, 29t • Bình Thạnh • 1.2k lượt thích",
-        imgId: null,
-        afterImgId: null,
+        imgId: "64",
+        afterImgId: "201",
       },
     ],
     beforeAfterLabel: "Trước & Sau 28 ngày",
