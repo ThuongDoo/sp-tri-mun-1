@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trình chỉnh sửa nội dung</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./demo-clients.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
     [x-cloak] { display: none !important; }
@@ -67,6 +68,7 @@
         </button>
         <div x-show="open.basic" class="sec-body">
           <div class="grid2" style="margin-bottom:0.75rem">
+            <div><label class="label">Logo (emoji hoặc URL ảnh)</label><input class="input" x-model="d.logo" placeholder="🌿 hoặc https://..." /></div>
             <div><label class="label">Tên thương hiệu</label><input class="input" x-model="d.brand" /></div>
             <div><label class="label">Hotline (hiển thị)</label><input class="input" x-model="d.hotline" /></div>
             <div><label class="label">Số điện thoại (tel:)</label><input class="input" x-model="d.phone" /></div>
@@ -394,6 +396,14 @@
         return EDITOR_THEMES.find(t => t.name === this.d.theme) || EDITOR_THEMES[6];
       },
 
+      init() {
+        const isDemo = window.location.pathname.startsWith('/demo');
+        const key = new URLSearchParams(window.location.search).get('client');
+        if (isDemo && key && typeof DEMO_CLIENTS !== 'undefined' && DEMO_CLIENTS[key]) {
+          Object.assign(this.d, toEditorFormat(DEMO_CLIENTS[key]));
+        }
+      },
+
       open: {
         basic: true, nav: false, hero: false, trustBar: false,
         pain: false, solution: false, benefits: false, reviews: false,
@@ -402,6 +412,7 @@
 
       d: {
         theme: 'teal',
+        logo: '🌿',
         brand: 'GreenDerm',
         hotline: '0987 654 321',
         phone: '0987654321',
@@ -558,6 +569,7 @@
         return {
           client: {
             theme: d.theme,
+            logo: d.logo,
             brand: d.brand,
             hotline: d.hotline,
             phone: d.phone,

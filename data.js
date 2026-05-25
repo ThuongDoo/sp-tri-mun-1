@@ -1,24 +1,7 @@
-// ═══════════════════════════════════════════════════════════════════════════════
-// ⚙️  CẤU HÌNH NHANH — Chỉnh sửa ở đây, không cần đụng code bên dưới
-// ═══════════════════════════════════════════════════════════════════════════════
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// 📦 ENCRYPTED CLIENT — Seller paste nội dung JSON nhận từ khách vào đây:
-// ═══════════════════════════════════════════════════════════════════════════════
-const ENCRYPTED_CLIENT = {};
-// Sau khi nhận file từ khách, paste như sau:
-// const ENCRYPTED_CLIENT = { "v": 1, "salt": "...", "iv": "...", "data": "..." };
-
-const CLIENT_CONFIG = {
-  scriptUrl:
-    "https://script.google.com/macros/s/AKfycbxPg0ns72ylVn8aaiy8Qb7JFpBJzVyOxT0lw2Vp13uyyV7iejB0gJeLb82dETfMdINL/exec", // ← Apps Script URL (deploy 1 lần, dùng chung)
-  clientKey: "greenderm", // ← đổi key để chuyển client
-  sheetId: "16V4WklPE_rx7f9KgUh4I8EEDGvsEBtJgqpmSjvlCy4I", // ← ID Google Sheet của client
-};
-
 const CLIENTS_DATA = {
   theme: "teal", // emerald | rose | violet | sky | amber | fuchsia | teal
 
+  logo: "https://static.vecteezy.com/system/resources/thumbnails/045/132/934/small_2x/a-beautiful-picture-of-the-eiffel-tower-in-paris-the-capital-of-france-with-a-wonderful-background-in-wonderful-natural-colors-photo.jpg", // emoji hoặc URL ảnh (https://... hoặc /images/logo.png)
   brand: "GreenDerm",
   hotline: "0987 654 321",
   phone: "0987654321",
@@ -342,7 +325,20 @@ const _FALLBACK = {
   sheetId: CLIENT_CONFIG.sheetId,
 };
 
-document.title = _FALLBACK.pageTitle;
+// ─── Mode detection ──────────────────────────────────────────────────────────
+// Demo:       /demo?client=user1  → lấy data từ DEMO_CLIENTS
+// Production: /                  → lấy data từ ENCRYPTED_CLIENT
+const _IS_DEMO = window.location.pathname.startsWith("/demo");
+const _DEMO_KEY = new URLSearchParams(window.location.search).get("client");
+const _BASE =
+  _IS_DEMO &&
+  _DEMO_KEY &&
+  typeof DEMO_CLIENTS !== "undefined" &&
+  DEMO_CLIENTS[_DEMO_KEY]
+    ? { ...DEMO_CLIENTS[_DEMO_KEY], sheetId: CLIENT_CONFIG.sheetId }
+    : _FALLBACK;
+
+document.title = _BASE.pageTitle;
 
 // ─── THEME ENGINE ────────────────────────────────────────────────────────────
 function applyTheme(t) {
@@ -376,7 +372,7 @@ function applyTheme(t) {
   document.head.appendChild(s);
 }
 
-applyTheme(THEMES[_FALLBACK.theme] || THEMES.emerald);
+applyTheme(THEMES[_BASE.theme] || THEMES.emerald);
 
 // ─── Decrypt (AES-256-GCM + PBKDF2) ──────────────────────────────────────────
 async function _decrypt(enc, password) {
@@ -411,7 +407,7 @@ async function _decrypt(enc, password) {
 // ─── clientApp: nguồn dữ liệu cho Alpine x-data ───────────────────────────────
 function clientApp() {
   return {
-    ..._FALLBACK,
+    ..._BASE,
     async init() {
       if (!ENCRYPTED_CLIENT || ENCRYPTED_CLIENT.v !== 1) return;
       try {
