@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/demo/edit", "destination": "/editor.html" },
     { "source": "/demo",      "destination": "/index.html"  }

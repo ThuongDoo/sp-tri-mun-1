@@ -326,17 +326,37 @@ const _FALLBACK = {
 };
 
 // ─── Mode detection ──────────────────────────────────────────────────────────
-// Demo:       /demo?client=user1  → lấy data từ DEMO_CLIENTS
-// Production: /                  → lấy data từ ENCRYPTED_CLIENT
-const _IS_DEMO = window.location.pathname.startsWith("/demo");
-const _DEMO_KEY = new URLSearchParams(window.location.search).get("client");
-const _BASE =
+// Demo:       /demo?client=user1           → lấy data từ DEMO_CLIENTS
+//             /demo?client=user1&theme=rose → override màu theo theme
+// Production: /                            → lấy data từ ENCRYPTED_CLIENT
+const _SEARCH = new URLSearchParams(window.location.search);
+const _DEMO_KEY = _SEARCH.get("client");
+const _THEME_PARAM = _SEARCH.get("theme"); // ?theme=rose | violet | sky | amber | fuchsia | teal | emerald
+
+// Demo khi có ?client= ở bất kỳ path nào, hoặc khi path bắt đầu bằng /demo
+const _IS_DEMO = window.location.pathname.startsWith("/demo") || !!_DEMO_KEY;
+
+// Nếu IS_DEMO === false → chặn toàn bộ demo, redirect về production
+if (_IS_DEMO && typeof IS_DEMO !== "undefined" && !IS_DEMO) {
+  window.location.replace(window.location.pathname.replace(/\/demo\/?/, "/"));
+}
+
+const _DEMO_CLIENT =
   _IS_DEMO &&
+  IS_DEMO &&
   _DEMO_KEY &&
-  typeof DEMO_CLIENTS !== "undefined" &&
-  DEMO_CLIENTS[_DEMO_KEY]
-    ? { ...DEMO_CLIENTS[_DEMO_KEY], sheetId: CLIENT_CONFIG.sheetId }
-    : _FALLBACK;
+  typeof DEMO_CLIENTS !== "undefined"
+    ? DEMO_CLIENTS[_DEMO_KEY]
+    : null;
+
+const _BASE_RAW = _DEMO_CLIENT
+  ? { ..._DEMO_CLIENT, sheetId: CLIENT_CONFIG.sheetId }
+  : _FALLBACK;
+
+const _BASE =
+  _THEME_PARAM && THEMES[_THEME_PARAM]
+    ? { ..._BASE_RAW, theme: _THEME_PARAM }
+    : _BASE_RAW;
 
 document.title = _BASE.pageTitle;
 
@@ -414,6 +434,7 @@ function clientApp() {
         const json = await _decrypt(ENCRYPTED_CLIENT, ENCRYPT_KEY);
         const { client } = JSON.parse(json);
         Object.assign(this, client);
+        if (_THEME_PARAM && THEMES[_THEME_PARAM]) this.theme = _THEME_PARAM;
         document.title = this.pageTitle;
         applyTheme(THEMES[this.theme] || THEMES.emerald);
       } catch (e) {
