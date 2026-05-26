@@ -144,6 +144,8 @@ const CLIENTS_DATA = {
     beforeAfterDay28: "Ngày 28 ✨",
     beforeAfterBtn: "Tôi cũng muốn như chị này →",
     beforeAfterMsg: "Cảm ơn bạn đã xem! Bạn cũng sẽ như vậy 💚",
+    beforeImg: "",
+    afterImg: "",
   },
 
   process: {
@@ -313,22 +315,16 @@ const THEMES = {
   },
 };
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// 🔐 SELLER KEY — phải GIỐNG HỆT ENCRYPT_KEY trong editor.html
-//    Đổi key này trước khi giao editor.html cho khách
-// ═══════════════════════════════════════════════════════════════════════════════
-const ENCRYPT_KEY = "SPA_SELLER_KEY_2025"; // ← ĐỔI KEY NÀY
-
-// ─── Fallback: dùng hardcoded data khi chưa có file từ khách ─────────────────
+// ─── Fallback: dùng hardcoded data khi chưa có CLIENT_DATA từ khách ──────────
 const _FALLBACK = {
-  ...CLIENTS_DATA,
+  ...(typeof CLIENT_DATA !== "undefined" ? CLIENT_DATA : CLIENTS_DATA),
   sheetId: CLIENT_CONFIG.sheetId,
 };
 
 // ─── Mode detection ──────────────────────────────────────────────────────────
 // Demo:       /demo?client=user1           → lấy data từ DEMO_CLIENTS
 //             /demo?client=user1&theme=rose → override màu theo theme
-// Production: /                            → lấy data từ ENCRYPTED_CLIENT
+// Production: /                            → lấy data từ CLIENT_DATA
 const _SEARCH = new URLSearchParams(window.location.search);
 const _DEMO_KEY = _SEARCH.get("client");
 const _THEME_PARAM = _SEARCH.get("theme"); // ?theme=rose | violet | sky | amber | fuchsia | teal | emerald
@@ -394,52 +390,15 @@ function applyTheme(t) {
 
 applyTheme(THEMES[_BASE.theme] || THEMES.emerald);
 
-// ─── Decrypt (AES-256-GCM + PBKDF2) ──────────────────────────────────────────
-async function _decrypt(enc, password) {
-  const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
-  const km = await crypto.subtle.importKey(
-    "raw",
-    new TextEncoder().encode(password),
-    { name: "PBKDF2" },
-    false,
-    ["deriveKey"],
-  );
-  const key = await crypto.subtle.deriveKey(
-    {
-      name: "PBKDF2",
-      salt: b64(enc.salt),
-      iterations: 100000,
-      hash: "SHA-256",
-    },
-    km,
-    { name: "AES-GCM", length: 256 },
-    false,
-    ["decrypt"],
-  );
-  const buf = await crypto.subtle.decrypt(
-    { name: "AES-GCM", iv: b64(enc.iv) },
-    key,
-    b64(enc.data),
-  );
-  return new TextDecoder().decode(buf);
-}
-
 // ─── clientApp: nguồn dữ liệu cho Alpine x-data ───────────────────────────────
 function clientApp() {
   return {
     ..._BASE,
-    async init() {
-      if (!ENCRYPTED_CLIENT || ENCRYPTED_CLIENT.v !== 1) return;
-      try {
-        const json = await _decrypt(ENCRYPTED_CLIENT, ENCRYPT_KEY);
-        const { client } = JSON.parse(json);
-        Object.assign(this, client);
-        if (_THEME_PARAM && THEMES[_THEME_PARAM]) this.theme = _THEME_PARAM;
-        document.title = this.pageTitle;
-        applyTheme(THEMES[this.theme] || THEMES.emerald);
-      } catch (e) {
-        console.warn("[clientApp] Giải mã thất bại, dùng dữ liệu mặc định.", e);
-      }
+    imgSrc(id, w, h) {
+      if (!id) return `https://picsum.photos/id/1/${w}/${h}`;
+      if (id.startsWith('data:') || id.startsWith('http') || id.startsWith('/')) return id;
+      return `https://picsum.photos/id/${id}/${w}/${h}`;
     },
+    init() {},
   };
 }
