@@ -38,6 +38,7 @@ const DEMO_CLIENTS = {
       subCta: "MIỄN PHÍ soi da + Voucher 100k hôm nay",
       ctaBtn: "👉 Đăng ký soi da MIỄN PHÍ ngay",
       rating: "4.98/5",
+      ratingLabel: "1.243 đánh giá thật",
       beforeAfterLabel: "Trước → Sau 28 ngày",
       testimonialName: "Chị Lan, 26t",
       testimonialResult: "Mụn hết 95% • Da không còn đỏ",
@@ -141,6 +142,13 @@ const DEMO_CLIENTS = {
           imgId: "64",
           afterImgId: "201",
         },
+        {
+          quote:
+            "Chỉ sau 3 tuần, mụn đầu đen gần như sạch hết. Da mình giờ căng mịn, sáng hơn hẳn 💚",
+          author: "Chị Thu Hằng, 31t • Quận 10",
+          imgId: "",
+          afterImgId: "",
+        },
       ],
       beforeAfterLabel: "Trước & Sau 28 ngày",
       beforeAfterDay1: "Ngày 1",
@@ -239,6 +247,7 @@ const DEMO_CLIENTS = {
       subCta: "MIỄN PHÍ tư vấn + Quà tặng 200k hôm nay",
       ctaBtn: "👉 Đặt lịch tư vấn MIỄN PHÍ ngay",
       rating: "4.97/5",
+      ratingLabel: "1.243 đánh giá thật",
       beforeAfterLabel: "Trước → Sau 1 liệu trình",
       testimonialName: "Chị Hương, 38t",
       testimonialResult: "Da căng mịn • Nếp nhăn giảm rõ rệt",
@@ -333,6 +342,13 @@ const DEMO_CLIENTS = {
           author: "Chị Bích Vân, 42t • Quận 3",
           imgId: "64",
           afterImgId: "201",
+        },
+        {
+          quote:
+            "Sau 1 buổi Hifu da mình căng hơn ngay lập tức. Bạn bè khen mãi! 🌸",
+          author: "Chị Ngọc Ánh, 37t • Quận Bình Thạnh",
+          imgId: "",
+          afterImgId: "",
         },
       ],
       beforeAfterLabel: "Trước & Sau 1 liệu trình",

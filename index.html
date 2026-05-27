@@ -170,7 +170,7 @@
                 class="w-7 h-7 rounded-full ring-2 ring-white"
               />
             </div>
-            <p x-text="'⭐⭐⭐⭐⭐ ' + hero.rating + ' • ' + reviews + ' đánh giá thật'"></p>
+            <p x-text="'⭐⭐⭐⭐⭐ ' + hero.rating + ' • ' + hero.ratingLabel"></p>
           </div>
           <div class="flex gap-4 text-xs">
             <template x-for="item in hero.trustItems" :key="item.icon">
@@ -310,63 +310,25 @@
       <div class="max-w-7xl mx-auto px-4">
         <h2 class="text-center text-3xl font-bold mb-8" x-text="reviewsSection.heading"></h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <!-- Review 1 -->
-          <div class="bg-white p-5 rounded-3xl">
-            <div class="flex justify-between">
-              <div>⭐⭐⭐⭐⭐</div>
-              <img
-                :src="imgSrc(reviewsSection.items[0].imgId, 48, 48)"
-                class="rounded-full w-12 h-12 object-cover flex-shrink-0"
-              />
-            </div>
-            <p class="mt-3" x-text="'&quot;' + reviewsSection.items[0].quote + '&quot;'"></p>
-            <p class="text-xs mt-4" x-text="'— ' + reviewsSection.items[0].author"></p>
-            <img
-              :src="imgSrc(reviewsSection.items[0].afterImgId, 300, 100)"
-              class="mt-4 rounded-xl w-full h-24 object-cover"
-            />
-          </div>
-          <!-- Before & After -->
-          <div class="bg-white p-5 rounded-3xl md:col-span-1">
-            <p class="font-bold mb-3" x-text="reviewsSection.beforeAfterLabel"></p>
-            <div class="grid grid-cols-2 gap-2">
-              <div>
-                <img
-                  :src="imgSrc(reviewsSection.beforeImg || '180', 200, 200)"
-                  class="rounded-xl w-full aspect-square object-cover"
-                />
-                <p class="text-xs text-center mt-1 text-zinc-500" x-text="reviewsSection.beforeAfterDay1"></p>
+          <template x-for="item in [reviewsSection.items[0], reviewsSection.items[1], reviewsSection.items[2]]" :key="item.author">
+            <div class="bg-white rounded-3xl overflow-hidden shadow-sm">
+              <div class="grid grid-cols-2 gap-0.5">
+                <div class="relative">
+                  <img :src="imgSrc(item.imgId, 300, 360)" class="w-full aspect-[5/6] object-cover" />
+                  <span class="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-0.5 rounded-full">Trước</span>
+                </div>
+                <div class="relative">
+                  <img :src="imgSrc(item.afterImgId, 300, 360)" class="w-full aspect-[5/6] object-cover" />
+                  <span class="absolute bottom-2 right-2 bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">Sau ✨</span>
+                </div>
               </div>
-              <div>
-                <img
-                  :src="imgSrc(reviewsSection.afterImg || '201', 200, 200)"
-                  class="rounded-xl w-full aspect-square object-cover"
-                />
-                <p class="text-xs text-center mt-1 font-bold" x-text="reviewsSection.beforeAfterDay28"></p>
+              <div class="p-4">
+                <div class="text-sm mb-1">⭐⭐⭐⭐⭐</div>
+                <p class="text-sm text-zinc-700 leading-snug" x-text="'&quot;' + item.quote + '&quot;'"></p>
+                <p class="text-xs mt-2 text-zinc-400 font-medium" x-text="'— ' + item.author"></p>
               </div>
             </div>
-            <button
-              :onclick="'alert(CLIENT.reviewsSection.beforeAfterMsg)'"
-              class="w-full mt-4 bg-emerald-600 text-white py-3 rounded-2xl"
-              x-text="reviewsSection.beforeAfterBtn"
-            ></button>
-          </div>
-          <!-- Review 2 -->
-          <div class="bg-white p-5 rounded-3xl">
-            <div class="flex justify-between">
-              <div>⭐⭐⭐⭐⭐</div>
-              <img
-                :src="imgSrc(reviewsSection.items[1].imgId, 48, 48)"
-                class="rounded-full w-12 h-12 object-cover flex-shrink-0"
-              />
-            </div>
-            <p class="mt-3" x-text="'&quot;' + reviewsSection.items[1].quote + '&quot;'"></p>
-            <p class="text-xs mt-4" x-text="'— ' + reviewsSection.items[1].author"></p>
-            <img
-              :src="imgSrc(reviewsSection.items[1].afterImgId, 300, 100)"
-              class="mt-4 rounded-xl w-full h-24 object-cover"
-            />
-          </div>
+          </template>
         </div>
         <p
           class="text-center mt-8 text-emerald-600 font-medium"
@@ -382,6 +344,9 @@
         <div class="mt-10 flex flex-wrap justify-center items-start gap-y-10 text-center">
           <template x-for="(step, i) in process.steps" :key="i">
             <div class="flex items-start">
+              <template x-if="i > 0">
+                <div class="hidden md:flex items-center self-start pt-5 px-1 text-4xl text-emerald-300">→</div>
+              </template>
               <div class="w-36 sm:w-44">
                 <div
                   class="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl font-bold shadow-md"
@@ -390,9 +355,6 @@
                 ></div>
                 <p class="font-semibold mt-4 text-base leading-snug px-2" x-text="step"></p>
               </div>
-              <template x-if="i < process.steps.length - 1">
-                <div class="hidden md:flex items-center self-start pt-5 px-1 text-4xl text-emerald-300">→</div>
-              </template>
             </div>
           </template>
         </div>
@@ -435,19 +397,13 @@
                 required
               />
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
               <input
                 type="tel"
                 id="phone"
                 :placeholder="form.placeholderPhone"
                 class="w-full border rounded-2xl px-5 py-3 focus:outline-none focus:border-emerald-500"
                 required
-              />
-              <input
-                type="email"
-                id="email"
-                :placeholder="form.placeholderEmail"
-                class="w-full border rounded-2xl px-5 py-3 focus:outline-none focus:border-emerald-500"
               />
             </div>
             <textarea
@@ -505,9 +461,13 @@
             <span class="font-bold text-2xl" x-text="brand"></span>
           </div>
           <p class="mt-3 text-zinc-400" x-text="footer.tagline"></p>
-          <div class="mt-4 flex gap-4">
-            <a x-bind:href="zalo" class="text-3xl" target="_blank">💬</a>
-            <a x-bind:href="messenger" class="text-3xl" target="_blank">📘</a>
+          <div class="mt-4 flex gap-4 items-center">
+            <a x-bind:href="zalo" target="_blank" title="Zalo">
+              <svg width="30" height="30" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#0068FF"/><text x="20" y="28" font-size="23" font-weight="900" text-anchor="middle" fill="white" font-family="Arial,sans-serif">Z</text></svg>
+            </a>
+            <a x-bind:href="messenger" target="_blank" title="Messenger" class="text-[#0099FF] text-3xl leading-none">
+              <i class="fab fa-facebook-messenger"></i>
+            </a>
           </div>
           <p class="text-xs mt-8">
             Hotline:
@@ -644,7 +604,6 @@
         const payload = new URLSearchParams({
           name,
           phone,
-          email:   document.getElementById("email").value.trim(),
           problem: document.getElementById("problem").value.trim(),
           source:  window.location.href,
           timestamp: new Date().toLocaleString("vi-VN"),
@@ -658,7 +617,7 @@
           e.target.reset();
         };
 
-        sendTelegram({ name, phone, email: document.getElementById("email").value.trim(), problem: document.getElementById("problem").value.trim(), source: window.location.href, timestamp: new Date().toLocaleString("vi-VN") });
+        sendTelegram({ name, phone, problem: document.getElementById("problem").value.trim(), source: window.location.href, timestamp: new Date().toLocaleString("vi-VN") });
 
         if (CLIENT_CONFIG.scriptUrl && CLIENT.sheetId) {
           fetch(CLIENT_CONFIG.scriptUrl, { method: "POST", mode: "no-cors", body: payload })

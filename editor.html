@@ -289,10 +289,6 @@
                 <label class="label">Số điện thoại</label
                 ><input class="input" x-model="d.phone" />
               </div>
-              <div>
-                <label class="label">Số đánh giá</label
-                ><input class="input" x-model="d.reviews" />
-              </div>
               <div class="col2">
                 <label class="label">Địa chỉ</label
                 ><input class="input" x-model="d.address" />
@@ -343,6 +339,10 @@
               <div>
                 <label class="label">Điểm đánh giá</label
                 ><input class="input" x-model="d.hero.rating" />
+              </div>
+              <div>
+                <label class="label">Số & nhãn đánh giá</label
+                ><input class="input" x-model="d.hero.ratingLabel" placeholder="vd: 1.243 đánh giá thật" />
               </div>
               <div>
                 <label class="label">Tiêu đề chính 1</label
@@ -405,22 +405,7 @@
                 </div>
               </div>
             </div>
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 0.5rem;
-              "
-            >
-              <label class="label" style="margin: 0">Điểm tin cậy</label>
-              <button
-                class="btn-add"
-                @click="d.hero.trustItems.push({icon:'fa-star',text:''})"
-              >
-                + Thêm
-              </button>
-            </div>
+            <label class="label" style="margin-bottom:0.5rem;display:block">Điểm tin cậy</label>
             <template x-for="(item,i) in d.hero.trustItems" :key="i">
               <div class="row-flex">
                 <input
@@ -429,9 +414,6 @@
                   placeholder="Nội dung"
                   style="flex: 1"
                 />
-                <button class="btn-del" @click="d.hero.trustItems.splice(i,1)">
-                  ✕
-                </button>
               </div>
             </template>
           </div>
@@ -496,20 +478,9 @@
               ><input class="input" x-model="d.pain.cta" />
             </div>
             <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 0.5rem;
-              "
+              style="margin-bottom: 0.5rem"
             >
               <label class="label" style="margin: 0">Danh sách</label>
-              <button
-                class="btn-add"
-                @click="d.pain.items.push({emoji:'',text:''})"
-              >
-                + Thêm
-              </button>
             </div>
             <template x-for="(item,i) in d.pain.items" :key="i">
               <div class="row-flex">
@@ -525,9 +496,6 @@
                   placeholder="Nội dung"
                   style="flex: 1"
                 />
-                <button class="btn-del" @click="d.pain.items.splice(i,1)">
-                  ✕
-                </button>
               </div>
             </template>
           </div>
@@ -660,20 +628,9 @@
               ><input class="input" x-model="d.benefits.heading" />
             </div>
             <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 0.5rem;
-              "
+              style="margin-bottom: 0.5rem"
             >
               <label class="label" style="margin: 0">Danh sách</label>
-              <button
-                class="btn-add"
-                @click="d.benefits.items.push({emoji:'',title:'',sub:''})"
-              >
-                + Thêm
-              </button>
             </div>
             <template x-for="(item,i) in d.benefits.items" :key="i">
               <div class="row-flex">
@@ -695,9 +652,6 @@
                   placeholder="Phụ đề (tùy chọn)"
                   style="flex: 1.5"
                 />
-                <button class="btn-del" @click="d.benefits.items.splice(i,1)">
-                  ✕
-                </button>
               </div>
             </template>
           </div>
@@ -727,218 +681,53 @@
                 ><input class="input" x-model="d.reviewsSection.heading" />
               </div>
               <div>
+                <label class="label">Số đánh giá</label
+                ><input class="input" x-model="d.reviews" />
+              </div>
+              <div class="col2">
                 <label class="label">Dòng tổng đánh giá ({n} = số thay thế)</label
                 ><input class="input" x-model="d.reviewsSection.moreText" />
               </div>
-              <div>
-                <label class="label">Nhãn Trước / Sau</label
-                ><input
-                  class="input"
-                  x-model="d.reviewsSection.beforeAfterLabel"
-                />
-              </div>
-              <div>
-                <label class="label">Nhãn ngày 1</label
-                ><input
-                  class="input"
-                  x-model="d.reviewsSection.beforeAfterDay1"
-                />
-              </div>
-              <div>
-                <label class="label">Nhãn ngày 28</label
-                ><input
-                  class="input"
-                  x-model="d.reviewsSection.beforeAfterDay28"
-                />
-              </div>
-              <div>
-                <label class="label">Ảnh TRƯỚC</label>
-                <div class="img-upload-box">
-                  <template x-if="d.reviewsSection.beforeImg">
-                    <img
-                      class="img-thumb"
-                      :src="previewSrc(d.reviewsSection.beforeImg, 140, 140)"
-                      style="width: 70px; height: 70px"
-                    />
-                  </template>
-                  <template x-if="!d.reviewsSection.beforeImg">
-                    <div
-                      class="img-placeholder"
-                      style="width: 70px; height: 70px"
-                    >
-                      📷
-                    </div>
-                  </template>
-                  <button
-                    type="button"
-                    class="btn-add"
-                    @click="uploadImg(v => d.reviewsSection.beforeImg = v)"
-                  >
-                    📷 Chọn
-                  </button>
-                  <button
-                    type="button"
-                    class="btn-del"
-                    x-show="d.reviewsSection.beforeImg"
-                    @click="d.reviewsSection.beforeImg = ''"
-                  >
-                    ✕
-                  </button>
-                </div>
-              </div>
-              <div>
-                <label class="label">Ảnh SAU</label>
-                <div class="img-upload-box">
-                  <template x-if="d.reviewsSection.afterImg">
-                    <img
-                      class="img-thumb"
-                      :src="previewSrc(d.reviewsSection.afterImg, 140, 140)"
-                      style="width: 70px; height: 70px"
-                    />
-                  </template>
-                  <template x-if="!d.reviewsSection.afterImg">
-                    <div
-                      class="img-placeholder"
-                      style="width: 70px; height: 70px"
-                    >
-                      📷
-                    </div>
-                  </template>
-                  <button
-                    type="button"
-                    class="btn-add"
-                    @click="uploadImg(v => d.reviewsSection.afterImg = v)"
-                  >
-                    📷 Chọn
-                  </button>
-                  <button
-                    type="button"
-                    class="btn-del"
-                    x-show="d.reviewsSection.afterImg"
-                    @click="d.reviewsSection.afterImg = ''"
-                  >
-                    ✕
-                  </button>
-                </div>
-              </div>
-              <div>
-                <label class="label">Nút kêu gọi</label
-                ><input
-                  class="input"
-                  x-model="d.reviewsSection.beforeAfterBtn"
-                />
-              </div>
-              <div class="col2">
-                <label class="label">Thông điệp</label
-                ><input
-                  class="input"
-                  x-model="d.reviewsSection.beforeAfterMsg"
-                />
-              </div>
             </div>
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 0.5rem;
-              "
-            >
-              <label class="label" style="margin: 0">Danh sách đánh giá</label>
-              <button
-                class="btn-add"
-                @click="d.reviewsSection.items.push({quote:'',author:'',imgId:'',afterImgId:''})"
-              >
-                + Thêm
-              </button>
-            </div>
-            <template x-for="(item,i) in d.reviewsSection.items" :key="i">
+            <template x-for="(item, i) in [d.reviewsSection.items[0], d.reviewsSection.items[1], d.reviewsSection.items[2]]" :key="i">
               <div class="card-block">
+                <div style="margin-bottom:0.25rem; font-weight:600; font-size:0.8rem; color:#6b7280" x-text="'Đánh giá ' + (i+1)"></div>
                 <div style="margin-bottom: 0.5rem">
                   <label class="label">Nội dung đánh giá</label
-                  ><textarea
-                    class="input"
-                    x-model="item.quote"
-                    rows="2"
-                  ></textarea>
+                  ><textarea class="input" x-model="item.quote" rows="2"></textarea>
                 </div>
                 <div style="margin-bottom: 0.5rem">
                   <label class="label">Tên khách hàng</label
                   ><input class="input" x-model="item.author" />
                 </div>
-                <div class="grid2" style="margin-bottom: 0.5rem">
+                <div class="grid2">
                   <div>
-                    <label class="label">Ảnh avatar (để trống = ẩn)</label>
+                    <label class="label">Ảnh TRƯỚC</label>
                     <div class="img-upload-box">
                       <template x-if="item.imgId">
-                        <img
-                          class="img-thumb"
-                          :src="previewSrc(item.imgId, 48, 48)"
-                          style="width: 52px; height: 52px; border-radius: 50%"
-                        />
+                        <img class="img-thumb" :src="previewSrc(item.imgId, 48, 48)" style="width:52px;height:52px;border-radius:50%" />
                       </template>
                       <template x-if="!item.imgId">
-                        <div
-                          class="img-placeholder"
-                          style="width: 52px; height: 52px; border-radius: 50%"
-                        >
-                          👤
-                        </div>
+                        <div class="img-placeholder" style="width:52px;height:52px;border-radius:50%">👤</div>
                       </template>
-                      <button
-                        type="button"
-                        class="btn-add"
-                        @click="uploadImg(v => item.imgId = v)"
-                      >
-                        📷 Chọn
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-del"
-                        x-show="item.imgId"
-                        @click="item.imgId = ''"
-                      >
-                        ✕
-                      </button>
+                      <button type="button" class="btn-add" @click="uploadImg(v => item.imgId = v)">📷 Chọn</button>
+                      <button type="button" class="btn-del" x-show="item.imgId" @click="item.imgId = ''">✕</button>
                     </div>
                   </div>
                   <div>
-                    <label class="label">Ảnh kết quả sau (để trống = ẩn)</label>
+                    <label class="label">Ảnh kết quả</label>
                     <div class="img-upload-box">
                       <template x-if="item.afterImgId">
-                        <img
-                          class="img-thumb"
-                          :src="previewSrc(item.afterImgId, 300, 100)"
-                        />
+                        <img class="img-thumb" :src="previewSrc(item.afterImgId, 300, 100)" />
                       </template>
                       <template x-if="!item.afterImgId">
                         <div class="img-placeholder">🖼️</div>
                       </template>
-                      <button
-                        type="button"
-                        class="btn-add"
-                        @click="uploadImg(v => item.afterImgId = v)"
-                      >
-                        📷 Chọn
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-del"
-                        x-show="item.afterImgId"
-                        @click="item.afterImgId = ''"
-                      >
-                        ✕
-                      </button>
+                      <button type="button" class="btn-add" @click="uploadImg(v => item.afterImgId = v)">📷 Chọn</button>
+                      <button type="button" class="btn-del" x-show="item.afterImgId" @click="item.afterImgId = ''">✕</button>
                     </div>
                   </div>
                 </div>
-                <button
-                  class="btn-del"
-                  style="font-size: 0.7rem"
-                  @click="d.reviewsSection.items.splice(i,1)"
-                >
-                  ✕ Xoá đánh giá
-                </button>
               </div>
             </template>
           </div>
