@@ -11,8 +11,7 @@ const DEMO_CLIENTS = {
     theme: "teal",
     logo: "🌿",
     brand: "GreenDerm",
-    hotline: "0987 654 321",
-    phone: "0987654321",
+    phone: "0987 654 321",
     address: "123 Nguyễn Thị Minh Khai, Q.3, TP.HCM",
     reviews: "1.243",
     zalo: "https://zalo.me/0987654321",
@@ -39,10 +38,11 @@ const DEMO_CLIENTS = {
       subCta: "MIỄN PHÍ soi da + Voucher 100k hôm nay",
       ctaBtn: "👉 Đăng ký soi da MIỄN PHÍ ngay",
       rating: "4.98/5",
-      ratingLabel: "đánh giá thật",
       beforeAfterLabel: "Trước → Sau 28 ngày",
       testimonialName: "Chị Lan, 26t",
       testimonialResult: "Mụn hết 95% • Da không còn đỏ",
+      imgId: "201",
+      beforeAfterImgId: "237",
       trustItems: [
         { icon: "fa-shield-alt", text: "Bảo hành 6 tháng" },
         { icon: "fa-medal", text: "Chứng chỉ Bộ Y tế" },
@@ -56,6 +56,7 @@ const DEMO_CLIENTS = {
     pain: {
       label: "Bạn có đang gặp phải?",
       heading: "Những nỗi đau mà 99% chị em từng trải qua",
+      cta: "Tôi muốn thoát mụn — Tư vấn MIỄN PHÍ 👇",
       items: [
         { emoji: "🔥", text: "Mụn viêm, mụn nang, mụn đầu đen" },
         { emoji: "😣", text: "Da đỏ rát, kích ứng mỹ phẩm" },
@@ -64,7 +65,7 @@ const DEMO_CLIENTS = {
       ],
     },
     solution: {
-      headingSuffix: "– Giải pháp dành riêng cho da mụn nhạy cảm",
+      heading: "GreenDerm – Giải pháp dành riêng cho da mụn nhạy cảm",
       subtitle: "Kết hợp thảo dược Việt Nam + Công nghệ laser lạnh không đau",
       cards: [
         {
@@ -124,8 +125,7 @@ const DEMO_CLIENTS = {
     },
     reviewsSection: {
       heading: "Khách hàng thật – Kết quả thật",
-      morePrefix: "Và còn ",
-      moreSuffix: " đánh giá 5 sao khác trên Google & Facebook",
+      moreText: "Và còn {n} đánh giá 5 sao khác trên Google & Facebook",
       items: [
         {
           quote:
@@ -213,8 +213,7 @@ const DEMO_CLIENTS = {
     theme: "rose",
     logo: "🌸",
     brand: "BloomSpa",
-    hotline: "0912 345 678",
-    phone: "0912345678",
+    phone: "0912 345 678",
     address: "456 Lê Văn Sỹ, Q.Tân Bình, TP.HCM",
     reviews: "2.871",
     zalo: "https://zalo.me/0912345678",
@@ -240,10 +239,11 @@ const DEMO_CLIENTS = {
       subCta: "MIỄN PHÍ tư vấn + Quà tặng 200k hôm nay",
       ctaBtn: "👉 Đặt lịch tư vấn MIỄN PHÍ ngay",
       rating: "4.97/5",
-      ratingLabel: "đánh giá thật",
       beforeAfterLabel: "Trước → Sau 1 liệu trình",
       testimonialName: "Chị Hương, 38t",
       testimonialResult: "Da căng mịn • Nếp nhăn giảm rõ rệt",
+      imgId: "201",
+      beforeAfterImgId: "237",
       trustItems: [
         { icon: "fa-shield-alt", text: "Cam kết hiệu quả" },
         { icon: "fa-medal", text: "Thiết bị nhập khẩu Hàn Quốc" },
@@ -257,6 +257,7 @@ const DEMO_CLIENTS = {
     pain: {
       label: "Bạn có đang gặp phải?",
       heading: "Nỗi lo của phụ nữ sau tuổi 30",
+      cta: "Tôi muốn trẻ hóa da — Tư vấn MIỄN PHÍ 👇",
       items: [
         { emoji: "😟", text: "Da chảy xệ, mất đàn hồi" },
         { emoji: "🪞", text: "Nếp nhăn, rãnh cười, rãnh mũi má" },
@@ -265,7 +266,7 @@ const DEMO_CLIENTS = {
       ],
     },
     solution: {
-      headingSuffix: "– Công nghệ trẻ hóa không phẫu thuật hàng đầu",
+      heading: "BloomSpa – Công nghệ trẻ hóa không phẫu thuật hàng đầu",
       subtitle:
         "Hifu – Thermage – Filler tự nhiên – Không đau, không nghỉ dưỡng",
       cards: [
@@ -317,8 +318,7 @@ const DEMO_CLIENTS = {
     },
     reviewsSection: {
       heading: "Khách hàng thật – Kết quả thật",
-      morePrefix: "Và còn ",
-      moreSuffix: " đánh giá 5 sao khác trên Google & Facebook",
+      moreText: "Và còn {n} đánh giá 5 sao khác trên Google & Facebook",
       items: [
         {
           quote:

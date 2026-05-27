@@ -20,42 +20,16 @@ const CLIENT_CONFIG = {
 
 // Dữ liệu khách hàng — xuất từ editor.html (client_data.js) rồi paste nội dung vào đây
 const CLIENT_DATA = {
-  theme: "teal",
+  theme: "sky",
   logo: "🌿",
-  brand: "GreenDerm",
-  hotline: "0987 654 321",
-  phone: "0987654321",
+  brand: "GreenDermaa",
+  phone: "0987 654 321",
   address: "123 Nguyễn Thị Minh Khai, Q.3, TP.HCM",
   reviews: "1.243",
   zalo: "https://zalo.me/0987654321",
   messenger: "https://m.me/greenderm",
   pageTitle: "GreenDerm • Thoát Mụn – Da Khỏe • Tư Vấn Miễn Phí + Voucher 100k",
   stickyCta: "Nhận voucher 100k + soi da miễn phí",
-  nav: {
-    links: [
-      {
-        label: "Vấn đề",
-        href: "#pain",
-      },
-      {
-        label: "Giải pháp",
-        href: "#solution",
-      },
-      {
-        label: "Khách hàng",
-        href: "#review",
-      },
-      {
-        label: "Quy trình",
-        href: "#process",
-      },
-      {
-        label: "Đăng ký",
-        href: "#form",
-      },
-    ],
-    cta: "Tư vấn ngay",
-  },
   hero: {
     badge: "Đã giúp 8.742 chị lấy lại làn da tự tin",
     headline1: "Mụn dai dẳng + Da nhạy cảm?",
@@ -65,10 +39,11 @@ const CLIENT_DATA = {
     subCta: "MIỄN PHÍ soi da + Voucher 100k hôm nay",
     ctaBtn: "👉 Đăng ký soi da MIỄN PHÍ ngay",
     rating: "4.98/5",
-    ratingLabel: "đánh giá thật",
     beforeAfterLabel: "Trước → Sau 28 ngày",
     testimonialName: "Chị Lan, 26t",
     testimonialResult: "Mụn hết 95% • Da không còn đỏ",
+    imgId: "201",
+    beforeAfterImgId: "237",
     trustItems: [
       {
         icon: "fa-shield-alt",
@@ -88,6 +63,7 @@ const CLIENT_DATA = {
   pain: {
     label: "Bạn có đang gặp phải?",
     heading: "Những nỗi đau mà 99% chị em từng trải qua",
+    cta: "Tôi muốn thoát mụn — Tư vấn MIỄN PHÍ 👇",
     items: [
       {
         emoji: "🔥",
@@ -108,7 +84,7 @@ const CLIENT_DATA = {
     ],
   },
   solution: {
-    headingSuffix: "– Giải pháp dành riêng cho da mụn nhạy cảm",
+    heading: "GreenDerma – Giải pháp dành riêng cho da mụn nhạy cảm",
     subtitle: "Kết hợp thảo dược Việt Nam + Công nghệ laser lạnh không đau",
     cards: [
       {
@@ -171,8 +147,7 @@ const CLIENT_DATA = {
   },
   reviewsSection: {
     heading: "Khách hàng thật – Kết quả thật",
-    morePrefix: "Và còn ",
-    moreSuffix: " đánh giá 5 sao khác trên Google & Facebook",
+    moreText: "Và còn {n} đánh giá 5 sao khác trên Google & Facebook",
     items: [
       {
         quote:
@@ -249,7 +224,7 @@ const CLIENT_DATA = {
     discountCode: "FREESKIN100",
     scrollTopBtn: "↑ Về đầu trang",
     copyright: "All rights reserved.",
-    footerNote: "Code được tạo hoàn chỉnh theo yêu cầu • Chỉnh sửa thoải mái",
+    footerNote: "Công nghệ hiện đại • An toàn tuyệt đối • Kết quả được cam kết",
   },
   alerts: {
     nameError: "Vui lòng nhập họ tên đầy đủ 💚",

@@ -142,7 +142,7 @@
               x-text="hero.ctaBtn"
             ></button>
             <a
-              x-bind:href="'tel:' + phone"
+              x-bind:href="'tel:' + phone.replace(/\s/g,'')"
               class="bg-white/20 hover:bg-white/30 border-2 border-white px-6 py-4 rounded-2xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg hover:scale-105 transition w-full sm:w-auto"
             >
               <span class="relative flex h-5 w-5 shrink-0">
@@ -151,7 +151,7 @@
               </span>
               <span class="flex flex-col items-start leading-tight">
                 <span class="text-sm font-medium opacity-90">Gọi ngay</span>
-                <span class="font-bold tracking-wide text-base" x-text="hotline"></span>
+                <span class="font-bold tracking-wide text-base" x-text="phone"></span>
               </span>
             </a>
           </div>
@@ -170,7 +170,7 @@
                 class="w-7 h-7 rounded-full ring-2 ring-white"
               />
             </div>
-            <p x-text="'⭐⭐⭐⭐⭐ ' + hero.rating + ' • ' + reviews + ' ' + hero.ratingLabel"></p>
+            <p x-text="'⭐⭐⭐⭐⭐ ' + hero.rating + ' • ' + reviews + ' đánh giá thật'"></p>
           </div>
           <div class="flex gap-4 text-xs">
             <template x-for="item in hero.trustItems" :key="item.icon">
@@ -184,7 +184,7 @@
         <!-- Right -->
         <div class="relative">
           <img
-            src="https://picsum.photos/id/201/600/680"
+            :src="imgSrc(hero.imgId, 600, 680)"
             class="rounded-3xl shadow-2xl w-full object-cover h-80 md:h-[520px]"
             :alt="'Chị gái da sạch mịn sau trị mụn ' + brand"
           />
@@ -193,7 +193,7 @@
           >
             <p class="font-bold" x-text="hero.beforeAfterLabel"></p>
             <img
-              src="https://picsum.photos/id/237/280/120"
+              :src="imgSrc(hero.beforeAfterImgId, 280, 120)"
               class="rounded-xl mt-2 w-full h-20 object-cover"
             />
           </div>
@@ -235,7 +235,7 @@
           <button
             onclick="scrollToForm()"
             class="bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:bg-emerald-700 transition w-full sm:w-auto"
-          >Tôi muốn thoát mụn — Tư vấn MIỄN PHÍ 👇</button>
+          x-text="pain.cta"></button>
         </div>
       </div>
     </section>
@@ -246,7 +246,7 @@
         <div class="text-center mb-10">
           <h2
             class="text-3xl font-bold"
-            x-text="brand + ' ' + solution.headingSuffix"
+            x-text="solution.heading"
           ></h2>
           <p class="mt-3 text-zinc-600" x-text="solution.subtitle"></p>
         </div>
@@ -328,20 +328,22 @@
           </div>
           <!-- Before & After -->
           <div class="bg-white p-5 rounded-3xl md:col-span-1">
-            <p class="font-bold" x-text="reviewsSection.beforeAfterLabel"></p>
-            <div class="flex gap-2 mt-3">
-              <img
-                :src="imgSrc(reviewsSection.beforeImg || '180', 140, 140)"
-                class="rounded-xl w-[140px] h-[140px] object-cover flex-shrink-0"
-              />
-              <img
-                :src="imgSrc(reviewsSection.afterImg || '201', 140, 140)"
-                class="rounded-xl w-[140px] h-[140px] object-cover flex-shrink-0"
-              />
-            </div>
-            <div class="flex justify-between text-xs mt-2">
-              <span x-text="reviewsSection.beforeAfterDay1"></span>
-              <span class="text-emerald-600 font-bold" x-text="reviewsSection.beforeAfterDay28"></span>
+            <p class="font-bold mb-3" x-text="reviewsSection.beforeAfterLabel"></p>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <img
+                  :src="imgSrc(reviewsSection.beforeImg || '180', 200, 200)"
+                  class="rounded-xl w-full aspect-square object-cover"
+                />
+                <p class="text-xs text-center mt-1 text-zinc-500" x-text="reviewsSection.beforeAfterDay1"></p>
+              </div>
+              <div>
+                <img
+                  :src="imgSrc(reviewsSection.afterImg || '201', 200, 200)"
+                  class="rounded-xl w-full aspect-square object-cover"
+                />
+                <p class="text-xs text-center mt-1 font-bold" x-text="reviewsSection.beforeAfterDay28"></p>
+              </div>
             </div>
             <button
               :onclick="'alert(CLIENT.reviewsSection.beforeAfterMsg)'"
@@ -368,7 +370,7 @@
         </div>
         <p
           class="text-center mt-8 text-emerald-600 font-medium"
-          x-text="reviewsSection.morePrefix + reviews + reviewsSection.moreSuffix"
+          x-text="reviewsSection.moreText.replace('{n}', reviews)"
         ></p>
       </div>
     </section>
@@ -510,9 +512,9 @@
           <p class="text-xs mt-8">
             Hotline:
             <a
-              x-bind:href="'tel:' + phone"
+              x-bind:href="'tel:' + phone.replace(/\s/g,'')"
               class="underline"
-              x-text="hotline"
+              x-text="phone"
             ></a>
           </p>
         </div>
@@ -552,7 +554,7 @@
             class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500" required />
           <button type="submit"
             class="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold text-base hover:bg-emerald-700 transition"
-          >🚀 Đặt lịch tư vấn ngay</button>
+          x-text="form.submitBtn"></button>
         </form>
         <div class="flex items-center gap-3 my-4">
           <div class="flex-1 h-px bg-zinc-200"></div>
