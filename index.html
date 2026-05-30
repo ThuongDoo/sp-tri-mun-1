@@ -592,8 +592,8 @@
         const name = document.getElementById("name").value.trim();
         const phone = document.getElementById("phone").value.trim();
 
-        if (name.length < 3) { alert(CLIENT.alerts.nameError); return; }
-        if (phone.length < 9) { alert(CLIENT.alerts.phoneError); return; }
+        if (!name) { alert(CLIENT.alerts.nameError); return; }
+        if (!phone) { alert(CLIENT.alerts.phoneError); return; }
 
         const btn = e.target.querySelector("[type=submit]");
         const originalText = btn.textContent;
@@ -609,21 +609,26 @@
           sheetId: CLIENT.sheetId || "",
         });
 
-        const finish = () => {
+        const onSuccess = () => {
           btn.textContent = originalText;
           btn.disabled = false;
           alert(CLIENT.alerts.successMsg);
           e.target.reset();
+        };
+        const onError = () => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          alert(CLIENT.alerts.errorMsg);
         };
 
         sendTelegram({ name, phone, problem: document.getElementById("problem").value.trim(), source: window.location.href, timestamp: new Date().toLocaleString("vi-VN") });
 
         if (CLIENT_CONFIG.scriptUrl && CLIENT.sheetId) {
           fetch(CLIENT_CONFIG.scriptUrl, { method: "POST", mode: "no-cors", body: payload })
-            .then(finish)
-            .catch(finish);
+            .then(onSuccess)
+            .catch(onError);
         } else {
-          finish();
+          onSuccess();
         }
       }
 
@@ -676,8 +681,8 @@
         e.preventDefault();
         const name = document.getElementById("popup-name").value.trim();
         const phone = document.getElementById("popup-phone").value.trim();
-        if (name.length < 3) { alert(CLIENT.alerts.nameError); return; }
-        if (phone.length < 9) { alert(CLIENT.alerts.phoneError); return; }
+        if (!name) { alert(CLIENT.alerts.nameError); return; }
+        if (!phone) { alert(CLIENT.alerts.phoneError); return; }
         const btn = e.target.querySelector("[type=submit]");
         const orig = btn.textContent;
         btn.textContent = "Đang gửi...";
@@ -688,19 +693,24 @@
           timestamp: new Date().toLocaleString("vi-VN"),
           sheetId: CLIENT.sheetId || "",
         });
-        const finish = () => {
+        const onSuccess = () => {
           btn.textContent = orig;
           btn.disabled = false;
           closePopup();
           alert(CLIENT.alerts.successMsg);
         };
+        const onError = () => {
+          btn.textContent = orig;
+          btn.disabled = false;
+          alert(CLIENT.alerts.errorMsg);
+        };
         sendTelegram({ name, phone, source: window.location.href, timestamp: new Date().toLocaleString("vi-VN") });
 
         if (CLIENT_CONFIG.scriptUrl && CLIENT.sheetId) {
           fetch(CLIENT_CONFIG.scriptUrl, { method: "POST", mode: "no-cors", body: payload })
-            .then(finish).catch(finish);
+            .then(onSuccess).catch(onError);
         } else {
-          finish();
+          onSuccess();
         }
       }
 

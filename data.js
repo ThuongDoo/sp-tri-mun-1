@@ -184,3 +184,5 @@ function clientApp() {
     init() {},
   };
 }
+
+const CLIENT = _BASE;

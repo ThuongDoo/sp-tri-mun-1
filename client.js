@@ -10,7 +10,6 @@ const CLIENT_CONFIG = {
   // Google Sheets (nhận lead)
   scriptUrl:
     "https://script.google.com/macros/s/AKfycbxPg0ns72ylVn8aaiy8Qb7JFpBJzVyOxT0lw2Vp13uyyV7iejB0gJeLb82dETfMdINL/exec",
-  clientKey: "greenderm",
   sheetId: "16V4WklPE_rx7f9KgUh4I8EEDGvsEBtJgqpmSjvlCy4I",
 
   // Telegram (nhận thông báo đăng ký mới)
@@ -250,5 +249,7 @@ const CLIENT_DATA = {
     phoneError: "Số điện thoại chưa đúng 💚",
     successMsg:
       "✅ Đăng ký thành công!\nBác sĩ sẽ gọi cho bạn trong 3-5 phút.\nVoucher 100k đã gửi qua Zalo.\nCảm ơn chị đã tin tưởng GreenDerm ❤️",
+    errorMsg:
+      "❌ Gửi thất bại. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo.",
   },
 };
