@@ -6,7 +6,6 @@
     <title>Trình chỉnh sửa nội dung</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./client.js"></script>
-    <script src="./demo-clients.js"></script>
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
@@ -1019,18 +1018,11 @@
           },
 
           init() {
-            const isDemo = window.location.pathname.startsWith("/demo");
-            const key = new URLSearchParams(window.location.search).get(
-              "client",
-            );
-            if (
-              isDemo &&
-              key &&
-              typeof DEMO_CLIENTS !== "undefined" &&
-              DEMO_CLIENTS[key]
-            ) {
-              Object.assign(this.d, toEditorFormat(DEMO_CLIENTS[key]));
-            }
+            const _s = new URLSearchParams(window.location.search);
+            const _theme = _s.get("theme");
+            const _phone = _s.get("phone");
+            if (_theme) this.d.theme = _theme;
+            if (_phone) this.d.phone = _phone;
           },
 
           open: {

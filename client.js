@@ -87,7 +87,7 @@ const CLIENT_DATA = {
     ],
   },
   solution: {
-    heading: "GreenDerma – Giải pháp dành riêng cho da mụn nhạy cảm",
+    heading: "Giải pháp dành riêng cho da mụn nhạy cảm",
     subtitle: "Kết hợp thảo dược Việt Nam + Công nghệ laser lạnh không đau",
     cards: [
       {
