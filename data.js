@@ -93,6 +93,19 @@ const THEMES = {
     gradientFrom: "#14b8a6",
     gradientTo: "#0d9488",
   },
+  plum: {
+    // 🍑 Đỏ mận — quyến rũ, sang trọng, nữ tính sâu lắng
+    50: "#fdf2f4",
+    100: "#fce7eb",
+    200: "#f9d0d9",
+    300: "#f3a8b8",
+    400: "#e97090",
+    500: "#c73b60",
+    600: "#a52449",
+    700: "#831538",
+    gradientFrom: "#a52449",
+    gradientTo: "#831538",
+  },
 };
 
 // Nav cố định — không thay đổi theo từng khách hàng
@@ -114,27 +127,29 @@ const _FALLBACK = {
 };
 
 // ─── Mode detection ──────────────────────────────────────────────────────────
-// Demo:       /demo?brand=GreenDerm&theme=rose&phone=0912345678
-//             → dùng CLIENT_DATA làm gốc, chỉ override brand / theme / phone từ params
+// Demo:       /demo?brand=GreenDerm&theme=rose&phone=0912345678&logo=https://...
+//             → dùng CLIENT_DATA làm gốc, chỉ override brand / theme / phone / logo từ params
 // Production: /  → dùng CLIENT_DATA nguyên bản
 const _SEARCH = new URLSearchParams(window.location.search);
 const _BRAND_PARAM = _SEARCH.get("brand"); // override brand
 const _THEME_PARAM  = _SEARCH.get("theme");  // ?theme=rose | violet | sky | amber | fuchsia | teal | emerald
 const _PHONE_PARAM  = _SEARCH.get("phone");  // override phone
+const _LOGO_PARAM   = _SEARCH.get("logo");   // override logo (URL hoặc data:image/...)
 
 // Demo khi có params hoặc path bắt đầu bằng /demo
-const _IS_DEMO = window.location.pathname.startsWith("/demo") || !!(_BRAND_PARAM || _THEME_PARAM || _PHONE_PARAM);
+const _IS_DEMO = window.location.pathname.startsWith("/demo") || !!(_BRAND_PARAM || _THEME_PARAM || _PHONE_PARAM || _LOGO_PARAM);
 
 // Nếu IS_DEMO === false → chặn toàn bộ demo, redirect về production
 if (_IS_DEMO && typeof IS_DEMO !== "undefined" && !IS_DEMO) {
   window.location.replace(window.location.pathname.replace(/\/demo\/?/, "/"));
 }
 
-// Luôn dùng CLIENT_DATA làm gốc, chỉ override 3 giá trị từ params
+// Luôn dùng CLIENT_DATA làm gốc, chỉ override 4 giá trị từ params
 const _BASE = { ..._FALLBACK };
 if (_BRAND_PARAM) _BASE.brand = _BRAND_PARAM;
 if (_THEME_PARAM && THEMES[_THEME_PARAM]) _BASE.theme = _THEME_PARAM;
 if (_PHONE_PARAM) _BASE.phone = _PHONE_PARAM;
+if (_LOGO_PARAM)  _BASE.logo  = _LOGO_PARAM;
 
 document.title = _BASE.pageTitle;
 
