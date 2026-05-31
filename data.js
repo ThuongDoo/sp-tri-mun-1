@@ -93,6 +93,19 @@ const THEMES = {
     gradientFrom: "#14b8a6",
     gradientTo: "#0d9488",
   },
+  blush: {
+    // 🌸 Hồng phấn — nhẹ nhàng, nữ tính, beauty spa
+    50: "#fff0f5",
+    100: "#ffe3ee",
+    200: "#ffc9e0",
+    300: "#ffa0c8",
+    400: "#ff6aa8",
+    500: "#ef3d85",
+    600: "#cc1f68",
+    700: "#a41253",
+    gradientFrom: "#ef3d85",
+    gradientTo: "#cc1f68",
+  },
   gold: {
     // ✨ Vàng gold — sang trọng, cao cấp, spa thẩm mỹ
     50: "#fdfbf0",
