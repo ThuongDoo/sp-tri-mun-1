@@ -93,6 +93,19 @@ const THEMES = {
     gradientFrom: "#14b8a6",
     gradientTo: "#0d9488",
   },
+  champagne: {
+    // 🥂 Vàng champagne — kim loại sáng, tối thượng, premium clinic
+    50: "#fdfcef",
+    100: "#faf7d6",
+    200: "#f5ecaa",
+    300: "#ecda6a",
+    400: "#dfc236",
+    500: "#c9a81c",
+    600: "#a48414",
+    700: "#7f630f",
+    gradientFrom: "#c9a81c",
+    gradientTo: "#a48414",
+  },
   nude: {
     // 🤍 Nude / Sand Rose — tinh tế, tối giản, sang trọng tự nhiên
     50: "#fdf8f6",
