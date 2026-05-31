@@ -93,6 +93,19 @@ const THEMES = {
     gradientFrom: "#14b8a6",
     gradientTo: "#0d9488",
   },
+  nude: {
+    // 🤍 Nude / Sand Rose — tinh tế, tối giản, sang trọng tự nhiên
+    50: "#fdf8f6",
+    100: "#faf0eb",
+    200: "#f4ddd4",
+    300: "#eabfb0",
+    400: "#de9882",
+    500: "#c97260",
+    600: "#aa5445",
+    700: "#883d32",
+    gradientFrom: "#c97260",
+    gradientTo: "#aa5445",
+  },
   blush: {
     // 🌸 Hồng phấn — nhẹ nhàng, nữ tính, beauty spa
     50: "#fff0f5",
