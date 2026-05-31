@@ -93,6 +93,19 @@ const THEMES = {
     gradientFrom: "#14b8a6",
     gradientTo: "#0d9488",
   },
+  gold: {
+    // ✨ Vàng gold — sang trọng, cao cấp, spa thẩm mỹ
+    50: "#fdfbf0",
+    100: "#faf4d3",
+    200: "#f4e8a0",
+    300: "#e8ce5a",
+    400: "#d4b034",
+    500: "#c09a28",
+    600: "#9e7d1e",
+    700: "#7b5f16",
+    gradientFrom: "#c09a28",
+    gradientTo: "#9e7d1e",
+  },
   plum: {
     // 🍑 Đỏ mận — quyến rũ, sang trọng, nữ tính sâu lắng
     50: "#fdf2f4",
