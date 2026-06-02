@@ -195,7 +195,7 @@
               border: none;
             "
           >
-            ⬇ Xuất client_data.js
+            ⬇ Xuất file
           </button>
         </div>
       </div>
@@ -341,7 +341,11 @@
               </div>
               <div>
                 <label class="label">Số & nhãn đánh giá</label
-                ><input class="input" x-model="d.hero.ratingLabel" placeholder="vd: 1.243 đánh giá thật" />
+                ><input
+                  class="input"
+                  x-model="d.hero.ratingLabel"
+                  placeholder="vd: 1.243 đánh giá thật"
+                />
               </div>
               <div>
                 <label class="label">Tiêu đề chính 1</label
@@ -381,30 +385,64 @@
                 <label class="label">Ảnh chính</label>
                 <div class="img-upload-box">
                   <template x-if="d.hero.imgId">
-                    <img class="img-thumb" :src="previewSrc(d.hero.imgId, 300, 200)" />
+                    <img
+                      class="img-thumb"
+                      :src="previewSrc(d.hero.imgId, 300, 200)"
+                    />
                   </template>
                   <template x-if="!d.hero.imgId">
                     <div class="img-placeholder">🖼️</div>
                   </template>
-                  <button type="button" class="btn-add" @click="uploadImg(v => d.hero.imgId = v)">📷 Chọn ảnh</button>
-                  <button type="button" class="btn-del" x-show="d.hero.imgId" @click="d.hero.imgId = ''">✕</button>
+                  <button
+                    type="button"
+                    class="btn-add"
+                    @click="uploadImg(v => d.hero.imgId = v)"
+                  >
+                    📷 Chọn ảnh
+                  </button>
+                  <button
+                    type="button"
+                    class="btn-del"
+                    x-show="d.hero.imgId"
+                    @click="d.hero.imgId = ''"
+                  >
+                    ✕
+                  </button>
                 </div>
               </div>
               <div>
                 <label class="label">Ảnh Trước/Sau nhỏ</label>
                 <div class="img-upload-box">
                   <template x-if="d.hero.beforeAfterImgId">
-                    <img class="img-thumb" :src="previewSrc(d.hero.beforeAfterImgId, 300, 120)" />
+                    <img
+                      class="img-thumb"
+                      :src="previewSrc(d.hero.beforeAfterImgId, 300, 120)"
+                    />
                   </template>
                   <template x-if="!d.hero.beforeAfterImgId">
                     <div class="img-placeholder">🖼️</div>
                   </template>
-                  <button type="button" class="btn-add" @click="uploadImg(v => d.hero.beforeAfterImgId = v)">📷 Chọn ảnh</button>
-                  <button type="button" class="btn-del" x-show="d.hero.beforeAfterImgId" @click="d.hero.beforeAfterImgId = ''">✕</button>
+                  <button
+                    type="button"
+                    class="btn-add"
+                    @click="uploadImg(v => d.hero.beforeAfterImgId = v)"
+                  >
+                    📷 Chọn ảnh
+                  </button>
+                  <button
+                    type="button"
+                    class="btn-del"
+                    x-show="d.hero.beforeAfterImgId"
+                    @click="d.hero.beforeAfterImgId = ''"
+                  >
+                    ✕
+                  </button>
                 </div>
               </div>
             </div>
-            <label class="label" style="margin-bottom:0.5rem;display:block">Điểm tin cậy</label>
+            <label class="label" style="margin-bottom: 0.5rem; display: block"
+              >Điểm tin cậy</label
+            >
             <template x-for="(item,i) in d.hero.trustItems" :key="i">
               <div class="row-flex">
                 <input
@@ -436,7 +474,7 @@
             ><span x-text="open.trustBar?'▲':'▼'"></span>
           </button>
           <div x-show="open.trustBar" class="sec-body">
-            <div style="display:flex; flex-direction:column; gap:0.5rem">
+            <div style="display: flex; flex-direction: column; gap: 0.5rem">
               <input class="input" x-model="d.trustBarItems[0].v" />
               <input class="input" x-model="d.trustBarItems[1].v" />
               <input class="input" x-model="d.trustBarItems[2].v" />
@@ -476,9 +514,7 @@
               <label class="label">Nút kêu gọi hành động</label
               ><input class="input" x-model="d.pain.cta" />
             </div>
-            <div
-              style="margin-bottom: 0.5rem"
-            >
+            <div style="margin-bottom: 0.5rem">
               <label class="label" style="margin: 0">Danh sách</label>
             </div>
             <template x-for="(item,i) in d.pain.items" :key="i">
@@ -626,9 +662,7 @@
               <label class="label">Tiêu đề</label
               ><input class="input" x-model="d.benefits.heading" />
             </div>
-            <div
-              style="margin-bottom: 0.5rem"
-            >
+            <div style="margin-bottom: 0.5rem">
               <label class="label" style="margin: 0">Danh sách</label>
             </div>
             <template x-for="(item,i) in d.benefits.items" :key="i">
@@ -679,21 +713,32 @@
                 <label class="label">Tiêu đề</label
                 ><input class="input" x-model="d.reviewsSection.heading" />
               </div>
-              <div>
-                <label class="label">Số đánh giá</label
-                ><input class="input" x-model="d.reviews" />
-              </div>
               <div class="col2">
-                <label class="label">Dòng tổng đánh giá ({n} = số thay thế)</label
+                <label class="label">Dòng tổng đánh giá</label
                 ><input class="input" x-model="d.reviewsSection.moreText" />
               </div>
             </div>
-            <template x-for="(item, i) in [d.reviewsSection.items[0], d.reviewsSection.items[1], d.reviewsSection.items[2]]" :key="i">
+            <template
+              x-for="(item, i) in [d.reviewsSection.items[0], d.reviewsSection.items[1], d.reviewsSection.items[2]]"
+              :key="i"
+            >
               <div class="card-block">
-                <div style="margin-bottom:0.25rem; font-weight:600; font-size:0.8rem; color:#6b7280" x-text="'Đánh giá ' + (i+1)"></div>
+                <div
+                  style="
+                    margin-bottom: 0.25rem;
+                    font-weight: 600;
+                    font-size: 0.8rem;
+                    color: #6b7280;
+                  "
+                  x-text="'Đánh giá ' + (i+1)"
+                ></div>
                 <div style="margin-bottom: 0.5rem">
                   <label class="label">Nội dung đánh giá</label
-                  ><textarea class="input" x-model="item.quote" rows="2"></textarea>
+                  ><textarea
+                    class="input"
+                    x-model="item.quote"
+                    rows="2"
+                  ></textarea>
                 </div>
                 <div style="margin-bottom: 0.5rem">
                   <label class="label">Tên khách hàng</label
@@ -704,26 +749,64 @@
                     <label class="label">Ảnh TRƯỚC</label>
                     <div class="img-upload-box">
                       <template x-if="item.imgId">
-                        <img class="img-thumb" :src="previewSrc(item.imgId, 48, 48)" style="width:52px;height:52px;border-radius:50%" />
+                        <img
+                          class="img-thumb"
+                          :src="previewSrc(item.imgId, 48, 48)"
+                          style="width: 52px; height: 52px; border-radius: 50%"
+                        />
                       </template>
                       <template x-if="!item.imgId">
-                        <div class="img-placeholder" style="width:52px;height:52px;border-radius:50%">👤</div>
+                        <div
+                          class="img-placeholder"
+                          style="width: 52px; height: 52px; border-radius: 50%"
+                        >
+                          👤
+                        </div>
                       </template>
-                      <button type="button" class="btn-add" @click="uploadImg(v => item.imgId = v)">📷 Chọn</button>
-                      <button type="button" class="btn-del" x-show="item.imgId" @click="item.imgId = ''">✕</button>
+                      <button
+                        type="button"
+                        class="btn-add"
+                        @click="uploadImg(v => item.imgId = v)"
+                      >
+                        📷 Chọn
+                      </button>
+                      <button
+                        type="button"
+                        class="btn-del"
+                        x-show="item.imgId"
+                        @click="item.imgId = ''"
+                      >
+                        ✕
+                      </button>
                     </div>
                   </div>
                   <div>
                     <label class="label">Ảnh kết quả</label>
                     <div class="img-upload-box">
                       <template x-if="item.afterImgId">
-                        <img class="img-thumb" :src="previewSrc(item.afterImgId, 300, 100)" />
+                        <img
+                          class="img-thumb"
+                          :src="previewSrc(item.afterImgId, 300, 100)"
+                        />
                       </template>
                       <template x-if="!item.afterImgId">
                         <div class="img-placeholder">🖼️</div>
                       </template>
-                      <button type="button" class="btn-add" @click="uploadImg(v => item.afterImgId = v)">📷 Chọn</button>
-                      <button type="button" class="btn-del" x-show="item.afterImgId" @click="item.afterImgId = ''">✕</button>
+                      <button
+                        type="button"
+                        class="btn-add"
+                        @click="uploadImg(v => item.afterImgId = v)"
+                      >
+                        📷 Chọn
+                      </button>
+                      <button
+                        type="button"
+                        class="btn-del"
+                        x-show="item.afterImgId"
+                        @click="item.afterImgId = ''"
+                      >
+                        ✕
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -865,7 +948,11 @@
               </div>
               <div class="col2">
                 <label class="label">Thông báo đăng ký thành công</label
-                ><textarea class="input" x-model="d.alerts.successMsg" rows="4"></textarea>
+                ><textarea
+                  class="input"
+                  x-model="d.alerts.successMsg"
+                  rows="4"
+                ></textarea>
               </div>
             </div>
           </div>
@@ -969,7 +1056,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <!-- end col -->
     </main>
@@ -986,6 +1072,17 @@
     </footer>
 
     <script>
+      function toEditorFormat(c) {
+        return {
+          ...c,
+          trustBarItems: (c.trustBar || []).map((v) => ({ v })),
+          process: {
+            heading: c.process.heading,
+            steps: c.process.steps.map((v) => ({ v })),
+          },
+        };
+      }
+
       const EDITOR_THEMES = [
         {
           name: "emerald",

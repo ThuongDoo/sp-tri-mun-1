@@ -152,7 +152,7 @@ const CLIENT_DATA = {
   },
   reviewsSection: {
     heading: "Khách hàng thật – Kết quả thật",
-    moreText: "Và còn {n} đánh giá 5 sao khác trên Google & Facebook",
+    moreText: "Và còn 1243 đánh giá 5 sao khác trên Google & Facebook",
     items: [
       {
         quote:
