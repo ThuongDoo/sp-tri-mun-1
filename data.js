@@ -1,6 +1,6 @@
 // ─── THEMES ──────────────────────────────────────────────────────────────────
 // Các tên có sẵn: "emerald" | "rose" | "violet" | "sky" | "amber" | "fuchsia" | "teal"
-//                 "champagne" | "nude" | "blush" | "gold" | "plum" | "silver" | "lavender" | "white"
+//                 "champagne" | "nude" | "blush" | "gold" | "plum" | "silver" | "lavender" | "white" | "black"
 // ─────────────────────────────────────────────────────────────────────────────
 const THEMES = {
   emerald: {
@@ -171,6 +171,19 @@ const THEMES = {
     700: "#7e22ce",
     gradientFrom: "#a855f7",
     gradientTo: "#7e22ce",
+  },
+  black: {
+    // 🖤 Đen tối — sang trọng, bí ẩn, luxury cao cấp
+    50: "#f4f4f4",
+    100: "#e8e8e8",
+    200: "#cccccc",
+    300: "#aaaaaa",
+    400: "#666666",
+    500: "#333333",
+    600: "#1a1a1a",
+    700: "#0d0d0d",
+    gradientFrom: "#1a1a1a",
+    gradientTo: "#000000",
   },
   white: {
     // 🤍 Trắng sáng — tinh khiết, thuần khiết, tối giản hiện đại
