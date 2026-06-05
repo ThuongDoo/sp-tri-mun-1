@@ -184,12 +184,14 @@ const _FALLBACK = {
 // Production: /  → dùng CLIENT_DATA nguyên bản
 const _SEARCH = new URLSearchParams(window.location.search);
 const _BRAND_PARAM = _SEARCH.get("brand"); // override brand
-const _THEME_PARAM  = _SEARCH.get("theme");  // ?theme=rose | violet | sky | amber | fuchsia | teal | emerald
-const _PHONE_PARAM  = _SEARCH.get("phone");  // override phone
-const _LOGO_PARAM   = _SEARCH.get("logo");   // override logo (URL hoặc data:image/...)
+const _THEME_PARAM = _SEARCH.get("theme"); // ?theme=rose | violet | sky | amber | fuchsia | teal | emerald
+const _PHONE_PARAM = _SEARCH.get("phone"); // override phone
+const _LOGO_PARAM = _SEARCH.get("logo"); // override logo (URL hoặc data:image/...)
 
 // Demo khi có params hoặc path bắt đầu bằng /demo
-const _IS_DEMO = window.location.pathname.startsWith("/demo") || !!(_BRAND_PARAM || _THEME_PARAM || _PHONE_PARAM || _LOGO_PARAM);
+const _IS_DEMO =
+  window.location.pathname.startsWith("/demo") ||
+  !!(_BRAND_PARAM || _THEME_PARAM || _PHONE_PARAM || _LOGO_PARAM);
 
 // Nếu IS_DEMO === false → chặn toàn bộ demo, redirect về production
 if (_IS_DEMO && typeof IS_DEMO !== "undefined" && !IS_DEMO) {
@@ -201,7 +203,16 @@ const _BASE = { ..._FALLBACK };
 if (_BRAND_PARAM) _BASE.brand = _BRAND_PARAM;
 if (_THEME_PARAM && THEMES[_THEME_PARAM]) _BASE.theme = _THEME_PARAM;
 if (_PHONE_PARAM) _BASE.phone = _PHONE_PARAM;
-if (_LOGO_PARAM)  _BASE.logo  = _LOGO_PARAM;
+if (_LOGO_PARAM) {
+  const _LOGO_BASE =
+    "https://raw.githubusercontent.com/ThuongDoo/spa-img/refs/heads/main/";
+  _BASE.logo =
+    _LOGO_PARAM.startsWith("http") ||
+    _LOGO_PARAM.startsWith("data:") ||
+    _LOGO_PARAM.startsWith("/")
+      ? _LOGO_PARAM
+      : _LOGO_BASE + _LOGO_PARAM;
+}
 
 document.title = _BASE.pageTitle;
 
@@ -245,7 +256,8 @@ function clientApp() {
     ..._BASE,
     imgSrc(id, w, h) {
       if (!id) return `https://picsum.photos/id/1/${w}/${h}`;
-      if (id.startsWith('data:') || id.startsWith('http') || id.startsWith('/')) return id;
+      if (id.startsWith("data:") || id.startsWith("http") || id.startsWith("/"))
+        return id;
       return `https://picsum.photos/id/${id}/${w}/${h}`;
     },
     init() {},
