@@ -1,5 +1,6 @@
 // ─── THEMES ──────────────────────────────────────────────────────────────────
 // Các tên có sẵn: "emerald" | "rose" | "violet" | "sky" | "amber" | "fuchsia" | "teal"
+//                 "champagne" | "nude" | "blush" | "gold" | "plum" | "silver" | "lavender"
 // ─────────────────────────────────────────────────────────────────────────────
 const THEMES = {
   emerald: {
@@ -157,6 +158,32 @@ const THEMES = {
     700: "#831538",
     gradientFrom: "#a52449",
     gradientTo: "#831538",
+  },
+  lavender: {
+    // 💜 Tím lavender — nhẹ nhàng, thư giãn, spa hoa oải hương
+    50: "#faf5ff",
+    100: "#f3e8ff",
+    200: "#e9d5ff",
+    300: "#d8b4fe",
+    400: "#c084fc",
+    500: "#a855f7",
+    600: "#9333ea",
+    700: "#7e22ce",
+    gradientFrom: "#a855f7",
+    gradientTo: "#7e22ce",
+  },
+  silver: {
+    // 🤍 Trắng xám bạc — tối giản, thanh lịch, tinh tế
+    50: "#f9fafb",
+    100: "#f3f4f6",
+    200: "#e5e7eb",
+    300: "#d1d5db",
+    400: "#9ca3af",
+    500: "#6b7280",
+    600: "#4b5563",
+    700: "#374151",
+    gradientFrom: "#6b7280",
+    gradientTo: "#4b5563",
   },
 };
 
