@@ -27,7 +27,7 @@ const CLIENT_DATA = {
   reviews: "1.243",
   zalo: "https://zalo.me/0987654321",
   messenger: "https://m.me/greenderm",
-  pageTitle: "GreenDerm • Thoát Mụn – Da Khỏe • Tư Vấn Miễn Phí + Voucher 100k",
+  pageTitle: "Thoát Mụn – Da Khỏe • Tư Vấn Miễn Phí + Voucher 100k",
   stickyCta: "Nhận voucher 100k + soi da miễn phí",
   hero: {
     badge: "Đã giúp 8.742 chị lấy lại làn da tự tin",
