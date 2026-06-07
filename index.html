@@ -30,6 +30,7 @@
         }
         document.querySelector('meta[property="og:title"]').setAttribute("content", brand);
         document.querySelector('meta[property="og:url"]').setAttribute("content", window.location.href);
+        if (s.get("brand")) document.title = brand;
       })();
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
