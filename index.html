@@ -4,6 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loading...</title>
+
+    <!-- Open Graph / Social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="" />
+    <script>
+      (function () {
+        var s = new URLSearchParams(window.location.search);
+        var logoParam = s.get("logo");
+        var brand = s.get("brand") || document.title;
+        var logoBase = "https://raw.githubusercontent.com/ThuongDoo/spa-img/refs/heads/main/";
+        var logoUrl = logoParam
+          ? (logoParam.startsWith("http") || logoParam.startsWith("data:") || logoParam.startsWith("/")
+              ? logoParam
+              : logoBase + logoParam)
+          : "";
+        if (logoUrl && !logoUrl.startsWith("data:")) {
+          document.querySelector('meta[property="og:image"]').setAttribute("content", logoUrl);
+          document.querySelector('meta[name="twitter:image"]').setAttribute("content", logoUrl);
+        }
+        document.querySelector('meta[property="og:title"]').setAttribute("content", brand);
+        document.querySelector('meta[property="og:url"]').setAttribute("content", window.location.href);
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="./client.js"></script>
     <script defer src="./data.js"></script>
