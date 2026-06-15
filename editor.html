@@ -355,14 +355,6 @@
                 <label class="label">Tiêu đề chính 2</label
                 ><input class="input" x-model="d.hero.headline2" />
               </div>
-              <div class="col2">
-                <label class="label">Phụ đề</label
-                ><input class="input" x-model="d.hero.subtext" />
-              </div>
-              <div>
-                <label class="label">Kêu gọi phụ</label
-                ><input class="input" x-model="d.hero.subCta" />
-              </div>
               <div>
                 <label class="label">Nút kêu gọi chính</label
                 ><input class="input" x-model="d.hero.ctaBtn" />
@@ -1076,23 +1068,23 @@
       }
 
       const EDITOR_THEMES = [
-        {
-          name: "emerald",
-          label: "🌿 Xanh lá",
-          from: "#10b981",
-          to: "#059669",
-        },
-        { name: "rose", label: "🌹 Hồng đỏ", from: "#f43f5e", to: "#db2777" },
-        { name: "violet", label: "💜 Tím", from: "#8b5cf6", to: "#6d28d9" },
-        { name: "sky", label: "🩵 Xanh biển", from: "#0ea5e9", to: "#0891b2" },
-        { name: "amber", label: "🍊 Cam", from: "#f59e0b", to: "#ea580c" },
-        {
-          name: "fuchsia",
-          label: "🌸 Hồng tím",
-          from: "#d946ef",
-          to: "#a21caf",
-        },
-        { name: "teal", label: "🩴 Xanh ngọc", from: "#14b8a6", to: "#0d9488" },
+        { name: "emerald",   label: "🌿 Xanh lá",     from: "#10b981", to: "#0d9488" },
+        { name: "rose",      label: "🌹 Hồng đỏ",     from: "#f43f5e", to: "#db2777" },
+        { name: "violet",    label: "💜 Tím",          from: "#8b5cf6", to: "#6d28d9" },
+        { name: "azure",     label: "🩵 Xanh nhạt",   from: "#489de8", to: "#267dcc" },
+        { name: "sky",       label: "☁️ Xanh biển",   from: "#0ea5e9", to: "#0891b2" },
+        { name: "teal",      label: "🩴 Xanh ngọc",   from: "#14b8a6", to: "#0d9488" },
+        { name: "amber",     label: "🍊 Cam",          from: "#f59e0b", to: "#ea580c" },
+        { name: "fuchsia",   label: "🌸 Hồng tím",    from: "#d946ef", to: "#a21caf" },
+        { name: "blush",     label: "🌷 Hồng phấn",   from: "#ef3d85", to: "#cc1f68" },
+        { name: "lavender",  label: "🪻 Lavender",     from: "#a855f7", to: "#7e22ce" },
+        { name: "plum",      label: "🍒 Đỏ mận",      from: "#a52449", to: "#831538" },
+        { name: "nude",      label: "🤎 Nude",         from: "#c97260", to: "#aa5445" },
+        { name: "champagne", label: "🥂 Champagne",    from: "#c9a81c", to: "#a48414" },
+        { name: "gold",      label: "✨ Gold",         from: "#c09a28", to: "#9e7d1e" },
+        { name: "silver",    label: "🩶 Bạc",          from: "#6b7280", to: "#4b5563" },
+        { name: "black",     label: "🖤 Đen",          from: "#1a1a1a", to: "#000000" },
+        { name: "white",     label: "🤍 Trắng",        from: "#a3a3a3", to: "#525252" },
       ];
 
       function editor() {
@@ -1102,7 +1094,7 @@
           get themeColors() {
             return (
               EDITOR_THEMES.find((t) => t.name === this.d.theme) ||
-              EDITOR_THEMES[6]
+              EDITOR_THEMES[0]
             );
           },
 
